@@ -8,7 +8,7 @@ const PeliculasController = {};
 PeliculasController.traePeliculas = async (req, res) => {
     try {
         let resultado = await axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=c847ba30c2f265e8089e5876b43d2ae2&language=en-US")
-        res.send(console.log(resultado))
+        res.send(console.log(resultado.data.genres))
     }catch(error){
         console.log("El error es: ", error.response.status, error.response.statusText)
     }
