@@ -1,7 +1,7 @@
 const UsuarioController = {};
 
 
-//Funciones del controlador
+//Funciones del controlador de usuarios
 
 UsuarioController.traeUsuarios = (req, res) => {
 

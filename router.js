@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
 
-const UsuarioRouter = require('./views/UsuarioRouter');
+const UsuariosRouter = require('./views/UsuariosRouter');
 const PeliculasRouter = require('./views/PeliculasRouter');
 const PedidosRouter = require('./views/PedidosRouter');
 
-router.use('/usuarios', UsuarioRouter);
+router.use('/usuarios', UsuariosRouter);
 router.use('/peliculas', PeliculasRouter);
 router.use('/pedidos', PedidosRouter);
 
