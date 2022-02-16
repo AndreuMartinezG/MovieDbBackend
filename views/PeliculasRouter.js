@@ -21,5 +21,17 @@ router.get('/titulo', PeliculasController.peliculasTitulo)
 //Busqueda de novedades
 router.get('/novedades', PeliculasController.traeNovedades)
 
+//Busqueda por ID
+
+router.get('/:id', PeliculasController.peliculasPorId)
+
+
+//Busqueda de Reviews de peliculas por id
+router.get('/:id/reviews', PeliculasController.peliculasIdReviews)
+
 
 module.exports = router;
+
+//:Id
+//
+//req.params.id
