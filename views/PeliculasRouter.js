@@ -7,7 +7,7 @@ const PeliculasController = require('../controllers/PeliculasController');
 //CRUD RESTful
 
 //Leer todos los usuarios
-router.get('/', PeliculasController.traePeliculas);
+router.get('/', PeliculasController.traeGeneros);
 //http://localhost:3000/peliculas
 
 //Registro
