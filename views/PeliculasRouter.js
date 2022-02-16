@@ -29,10 +29,15 @@ router.get('/:id', PeliculasController.peliculasPorId)
 router.get('/:id/reviews', PeliculasController.peliculasIdReviews)
 
 
-//Ultima pelicula subida a la base de datos
-router.get('/ultima', PeliculasController.peliculasUltimas)
+//Ultima pelicula subida a la base de datos -- /latest
+router.get('/ultimas', PeliculasController.peliculasUltimas)
 
+// Traemos las peliculas con mejor nota -- /mejor_valoradas
+router.get('/top_rated', PeliculasController.peliculasValoradas)
 
+//Traemos las peliculas relacionadas con la pelicula ID
+
+router.get('/:id/relacionadas', PeliculasController.peliculasRelacionadas)
 
 
 module.exports = router;

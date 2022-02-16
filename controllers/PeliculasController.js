@@ -47,8 +47,7 @@ PeliculasController.peliculasPorId = async (req, res) => {
 
     let id = req.params.id
     try {
-        let resultado = await axios.get(`
-        https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
+        let resultado = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
         res.send(resultado.data)
 
     } catch (error) {
@@ -71,14 +70,34 @@ PeliculasController.peliculasIdReviews = async (req, res) => {
 PeliculasController.peliculasUltimas = async (req, res) => {
 
     try{
-        let resultado = await axios.get(`
-        https://api.themoviedb.org/3/movie/latest?api_key=`${key}`&language=en-US`)
+        let resultado = await axios.get(`https://api.themoviedb.org/3/movie/latest?api_key=${key}&language=en-US`)
+        res.send(resultado.data)
     }catch(error){
         console.log("El error es: ", error.response.status, error.response.statusText)
     }
 }
 
+PeliculasController.peliculasValoradas = async (req, res) => {
 
+    try {
+        let result = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`)
+        res.send(result.data);
+    } catch (error) {
+        console.log("El error es: ", error.response.status, error.response.statusText)
+    }
+}
+
+PeliculasController.peliculasRelacionadas = async (req, res) => {
+
+    let id = req.params.id
+
+    try{
+        let resultado = await axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${key}&language=en-US&page=1`)
+        res.send(resultado.data)
+    }catch(error){
+        console.log("El error es: ", error.response.status, error.response.statusText)
+    }
+}
 
 
 
