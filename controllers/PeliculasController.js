@@ -68,7 +68,15 @@ PeliculasController.peliculasIdReviews = async (req, res) => {
     }
 }
 
-PeliculasController.peliculasUltimas = async (req, res) 
+PeliculasController.peliculasUltimas = async (req, res) => {
+
+    try{
+        let resultado = await axios.get(`
+        https://api.themoviedb.org/3/movie/latest?api_key=`${key}`&language=en-US`)
+    }catch(error){
+        console.log("El error es: ", error.response.status, error.response.statusText)
+    }
+}
 
 
 
