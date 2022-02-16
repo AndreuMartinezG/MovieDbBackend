@@ -22,12 +22,17 @@ router.get('/titulo', PeliculasController.peliculasTitulo)
 router.get('/novedades', PeliculasController.traeNovedades)
 
 //Busqueda por ID
-
 router.get('/:id', PeliculasController.peliculasPorId)
 
 
 //Busqueda de Reviews de peliculas por id
 router.get('/:id/reviews', PeliculasController.peliculasIdReviews)
+
+
+//Ultima pelicula subida a la base de datos
+router.get('/ultima', PeliculasController.peliculasUltimas)
+
+
 
 
 module.exports = router;
