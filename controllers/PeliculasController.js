@@ -33,6 +33,9 @@ PeliculasController.peliculasTitulo = async (req, res) => {
     }
 }
 
+
+///// Endpoint Retos /////
+
 PeliculasController.traeNovedades = async (req, res) => {
 
     try {

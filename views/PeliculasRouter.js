@@ -21,27 +21,21 @@ router.get('/titulo', PeliculasController.peliculasTitulo)
 //Busqueda de novedades
 router.get('/novedades', PeliculasController.traeNovedades)
 
-//Busqueda por ID
-router.get('/:id', PeliculasController.peliculasPorId)
-
-
-//Busqueda de Reviews de peliculas por id
-router.get('/:id/reviews', PeliculasController.peliculasIdReviews)
-
-
 //Ultima pelicula subida a la base de datos -- /latest
 router.get('/ultimas', PeliculasController.peliculasUltimas)
 
 // Traemos las peliculas con mejor nota -- /mejor_valoradas
 router.get('/top_rated', PeliculasController.peliculasValoradas)
 
-//Traemos las peliculas relacionadas con la pelicula ID
 
+//Traemos las peliculas relacionadas con la pelicula ID
 router.get('/:id/relacionadas', PeliculasController.peliculasRelacionadas)
+
+//Busqueda por ID
+router.get('/:id', PeliculasController.peliculasPorId)
+
+//Busqueda de Reviews de peliculas por id
+router.get('/:id/reviews', PeliculasController.peliculasIdReviews)
 
 
 module.exports = router;
-
-//:Id
-//
-//req.params.id
