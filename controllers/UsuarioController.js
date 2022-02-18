@@ -1,5 +1,6 @@
 const { truncate } = require('fs');
 const { Usuario } = require('../models/index');
+const bcrypt = require('bcrypt')
 
 const UsuarioController = {};
 
@@ -42,6 +43,7 @@ UsuarioController.registraUsuario = async (req, res) => {
         let surname = req.body.surname;
         let nickname = req.body.nickname;
         let email = req.body.email;
+        //let password = 
 
         //Comprobación de errores.....
 
@@ -52,7 +54,8 @@ UsuarioController.registraUsuario = async (req, res) => {
             age: age,
             surname: surname,
             email: email,
-            nickname: nickname
+            nickname: nickname,
+            //password:
         }).then(usuario => {
             console.log("este es mi amigo", usuario);
             res.send(`${usuario.name}, bienvenida a este infierno`);
