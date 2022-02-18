@@ -114,7 +114,7 @@ UsuarioController.updateProfile = async (req, res) => {
 
     try {
 
-        Usuario.update(req.body, {
+        Usuario.update(datos, {
             where : {id : id}
         })
         .then(actualizado => {

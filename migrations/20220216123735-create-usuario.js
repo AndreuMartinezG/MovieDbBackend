@@ -23,6 +23,9 @@ module.exports = {
       DNI: {
         type: Sequelize.STRING
       },
+      password: {
+        type: Sequelize.STRING
+      },
       telefono: {
         type: Sequelize.INTEGER
       },
