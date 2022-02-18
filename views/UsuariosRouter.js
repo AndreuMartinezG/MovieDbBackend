@@ -13,12 +13,15 @@ router.get('/', UsuarioController.traeUsuarios);
 router.post('/', UsuarioController.registraUsuario);
 //http://localhost:3000/usuarios
 
+router.delete('/', UsuarioController.deleteAll)
+
 //Login
 router.post('/login', UsuarioController.logUsuario);
 router.get('/:id', UsuarioController.traerUsuarioId);
+router.delete('/:id', UsuarioController.deleteById)
 router.get('/email/:email', UsuarioController.traerUsuarioEmail);
 
-router.delete('/', UsuarioController.deleteAll)
+
 
 
 
