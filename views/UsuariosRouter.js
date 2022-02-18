@@ -15,11 +15,10 @@ router.post('/', UsuarioController.registraUsuario);
 
 //Login
 router.post('/login', UsuarioController.logUsuario);
-//https://localhost:3000/usuarios/login
-
 router.get('/:id', UsuarioController.traerUsuarioId);
-
 router.get('/email/:email', UsuarioController.traerUsuarioEmail);
+
+router.delete('/', UsuarioController.deleteAll)
 
 
 

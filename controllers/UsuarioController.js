@@ -1,3 +1,4 @@
+const { truncate } = require('fs');
 const { Usuario } = require('../models/index');
 
 const UsuarioController = {};
@@ -65,5 +66,32 @@ UsuarioController.registraUsuario = async (req, res) => {
 UsuarioController.logUsuario = (req, res) => {
 
 };
+
+
+UsuarioController.deleteAll = async (req, res) => {
+
+    try {
+
+        Usuario.destroy({
+            where : {},
+            truncate: false
+        })
+        .then(usuariosEliminados => {
+            res.send(`se han eliminado ${usuariosEliminados} usuarios`)
+        })
+        
+    }catch(error){
+        res.send(error)
+    }
+
+}
+
+
+
+
+
+
+
+
 
 module.exports = UsuarioController;
