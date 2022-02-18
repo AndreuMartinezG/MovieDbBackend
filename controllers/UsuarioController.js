@@ -106,7 +106,26 @@ UsuarioController.deleteById = async (req, res) => {
 
 }
 
+UsuarioController.updateProfile = async (req, res) => {
 
+    let datos = req.body;
+
+    let id = req.params.id
+
+    try {
+
+        Usuario.update(req.body, {
+            where : {id : id}
+        })
+        .then(actualizado => {
+            res.send(actualizado)
+        })
+
+    }catch(error){
+        res.send(error)
+    }
+
+}
 
 
 

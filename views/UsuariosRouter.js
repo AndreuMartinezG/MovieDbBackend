@@ -15,10 +15,13 @@ router.post('/', UsuarioController.registraUsuario);
 
 router.delete('/', UsuarioController.deleteAll)
 
+
+
 //Login
 router.post('/login', UsuarioController.logUsuario);
 router.get('/:id', UsuarioController.traerUsuarioId);
-router.delete('/:id', UsuarioController.deleteById)
+router.delete('/:id', UsuarioController.deleteById);
+router.put('/:id', UsuarioController.updateProfile);
 router.get('/email/:email', UsuarioController.traerUsuarioEmail);
 
 
