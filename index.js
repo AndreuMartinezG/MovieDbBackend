@@ -5,6 +5,8 @@ const PORT = 3000;
 const db = require('./db.js');
 const router = require('./router');
 
+//process.env.PORT || 
+
 let corsOptions = {//CONFIGURO OPCIONES DE CORS
     origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
