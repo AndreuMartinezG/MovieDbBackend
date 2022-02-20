@@ -1,4 +1,4 @@
-const { truncate } = require('fs');
+const authConfig = require('../config/auth');
 const { Usuario } = require('../models/index');
 const bcrypt = require('bcrypt')
 
@@ -43,7 +43,7 @@ UsuarioController.registraUsuario = async (req, res) => {
         let edad = req.body.edad;
         let email = req.body.email;
         let DNI = req.body.DNI;
-        let password = req.body.password;
+        let password = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds));
         let telefono = req.body.telefono;
         let numCuenta = req.body.numCuenta
 
