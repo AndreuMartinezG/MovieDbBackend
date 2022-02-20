@@ -42,7 +42,7 @@ UsuarioController.registraUsuario = async (req, res) => {
         let apellido = req.body.apellido;
         let edad = req.body.edad;
         let email = req.body.email;
-        let DNI = req.body.DNI;
+        let dni = req.body.dni;
         let password = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds));
         let telefono = req.body.telefono;
         let numCuenta = req.body.numCuenta
@@ -52,14 +52,14 @@ UsuarioController.registraUsuario = async (req, res) => {
         //Guardamos en sequelize el usuario
 
         Usuario.create({
-            nombre = nombre,
-            apellido = apellido,
-            edad = edad,
-            email = email,
-            DNI = DNI,
-            password = password,
-            telefono = telefono,
-            numCuenta = numCuenta
+            nombre: nombre,
+            apellido: apellido,
+            edad: edad,
+            email: email,
+            dni: dni,
+            password: password,
+            telefono: telefono,
+            numCuenta: numCuenta
         }).then(usuario => {
             console.log("este es mi amigo", usuario);
             res.send(`${usuario.nombre}, bienvenid@ a este infierno`);

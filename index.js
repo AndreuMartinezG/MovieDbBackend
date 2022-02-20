@@ -19,7 +19,7 @@ app.use(cors(corsOptions));  //USO CORS
 
 app.use(router);
 
-db.then(()=>{
-    app.listen(PORT, ()=> console.log(`Server on port ${PORT}`)); //Conectado a la base de datos
+db.then(() => {
+    app.listen(PORT, () => console.log(`Server on port ${PORT}`)); //Conectado a la base de datos
 })
-.catch((err)=> console.log(err.message));  
+    .catch((err) => console.log(err.message));  
