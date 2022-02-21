@@ -35,6 +35,12 @@ module.exports = {
       numCuenta: {
         type: Sequelize.STRING
       },
+      token: {
+        type: Sequelize.STRING
+      },
+      tokenEXP: {
+        type: Sequelize.STRING
+      },
 
       createdAt: {
         allowNull: false,
