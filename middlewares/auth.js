@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
+const { Usuario } = require('../models/index');
 
 module.exports = (req, res, next) => {
 
     console.log(req.headers);
 
     // Comprobar que existe el token
-    if (!req.headers.authorization) {
+    if (!req.Usuario.token) {
         res.status(401).json({ msg: "Acceso no autorizado" });
     } else {
 
