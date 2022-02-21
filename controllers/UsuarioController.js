@@ -87,7 +87,7 @@ UsuarioController.logUsuario = (req, res) => {
 
             if (bcrypt.compareSync(password, Usuario.password)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
 
-                console.log(Usuario.password);
+                
 
                 let token = jwt.sign({ usuario: Usuario }, authConfig.secret, {
                     expiresIn: authConfig.expires
