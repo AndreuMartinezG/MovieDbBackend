@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class Pelicula extends Model {
 
     static associate(models) {
-      
+      this.hasMany(models.Order, {
+        foreignKey: 'peliculaId'
+      });
     }
   }
   Pelicula.init({
@@ -14,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     sinopsis: DataTypes.STRING,
     adult: DataTypes.BOOLEAN,
     imagen: DataTypes.STRING,
-    fecha: DataTypes.STRING
+    fecha: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Pelicula',

@@ -11,6 +11,39 @@ module.exports = {
       precio: {
         type: Sequelize.INTEGER
       },
+
+      peliculaId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Peliculas',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+
+      usuarioId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Usuarios',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+
+      fechaEntrega: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+
+      fechaDevolucion: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
