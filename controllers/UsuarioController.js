@@ -76,12 +76,12 @@ UsuarioController.logUsuario = (req, res) => {
     let password = req.body.password;
 
     Usuario.findOne({
-        where : {email : correo}
+        where: { email: correo }
     }).then(Usuario => {
 
-        if(!Usuario){
+        if (!Usuario) {
             res.send("Usuario o contraseña inválido");
-        }else {
+        } else {
             //el usuario existe, por lo tanto, vamos a comprobar
             //si el password es correcto
 
@@ -92,10 +92,11 @@ UsuarioController.logUsuario = (req, res) => {
                 let token = jwt.sign({ usuario: Usuario }, authConfig.secret, {
                     expiresIn: authConfig.expires
                 });
-                //Usuario.token = token
+                Usuario.token = token
                 res.json({
                     usuario: Usuario,
-                    token: token
+                    token: token,
+                    loginSucces: true
                 })
             } else {
                 res.status(401).json({ msg: "Usuario o contraseña inválidos" });
