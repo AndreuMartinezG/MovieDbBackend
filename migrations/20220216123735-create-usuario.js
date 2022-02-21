@@ -23,6 +23,9 @@ module.exports = {
       dni: {
         type: Sequelize.STRING
       },
+      rol: {
+        type: Sequelize.STRING
+      },
       password: {
         type: Sequelize.STRING
       },
@@ -32,6 +35,7 @@ module.exports = {
       numCuenta: {
         type: Sequelize.STRING
       },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
