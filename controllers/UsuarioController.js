@@ -1,6 +1,7 @@
 const authConfig = require('../config/auth');
 const { Usuario } = require('../models/index');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const UsuarioController = {};
 
@@ -71,7 +72,40 @@ UsuarioController.registraUsuario = async (req, res) => {
 };
 
 UsuarioController.logUsuario = (req, res) => {
+    let correo = req.body.email;
+    let password = req.body.password;
 
+    Usuario.findOne({
+        where : {email : correo}
+    }).then(Usuario => {
+
+        if(!Usuario){
+            res.send("Usuario o contraseña inválido");
+        }else {
+            //el usuario existe, por lo tanto, vamos a comprobar
+            //si el password es correcto
+
+            if (bcrypt.compareSync(password, Usuario.password)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
+
+                console.log(Usuario.password);
+
+                let token = jwt.sign({ usuario: Usuario }, authConfig.secret, {
+                    expiresIn: authConfig.expires
+                });
+
+                res.json({
+                    usuario: Usuario,
+                    token: token
+                })
+            } else {
+                res.status(401).json({ msg: "Usuario o contraseña inválidos" });
+            }
+        };
+
+
+    }).catch(error => {
+        res.send(error);
+    })
 };
 
 
