@@ -4,7 +4,7 @@ const { Usuario } = require('../models/index');
 
 module.exports = (req, res, next) => {
 
-    console.log(req.headers);
+    console.log(req.Usuario.token);
 
     // Comprobar que existe el token
     if (!req.Usuario.token) {
@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
     } else {
 
         // Comrpobar la validez de este token
-        let token = req.headers.authorization.split(" ")[1];
+        let token = req.Usuario.token;
 
         // Comprobar la validez de este token
         jwt.verify(token, authConfig.secret, (err, decoded) => {
