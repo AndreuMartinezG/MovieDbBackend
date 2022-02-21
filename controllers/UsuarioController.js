@@ -2,6 +2,7 @@ const authConfig = require('../config/auth');
 const { Usuario } = require('../models/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser')
 
 const UsuarioController = {};
 
@@ -97,7 +98,7 @@ UsuarioController.logUsuario = (req, res) => {
                     usuario: Usuario,
                     token: token,
                     loginSucces: true
-                })
+                }).cookie("x_auth", Usuario.token)
             } else {
                 res.status(401).json({ msg: "Usuario o contraseña inválidos" });
             }
