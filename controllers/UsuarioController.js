@@ -2,6 +2,7 @@ const authConfig = require('../config/auth');
 const { Usuario } = require('../models/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { Op } = require("sequelize");
 const cookieParser = require('cookie-parser')
 
 const UsuarioController = {};
@@ -38,8 +39,6 @@ UsuarioController.registraUsuario = async (req, res) => {
 
     //Registrando un usuario
 
-    try {
-
         let nombre = req.body.nombre;
         let apellido = req.body.apellido;
         let edad = req.body.edad;
@@ -50,26 +49,50 @@ UsuarioController.registraUsuario = async (req, res) => {
         let numCuenta = req.body.numCuenta
 
         //Comprobación de errores.....
+        Usuario.findAll({
+            where : {
 
+                [Op.or] : [
+                    {
+                        email : {
+                            [Op.like] : email
+                        }
+                    },
+                    {
+                        nickname : {
+                            [Op.like] : nickname
+                        }
+                    }
+                ]
+
+            }
+        }).then(datosRepetidos => {
+            if (datosRepetidos == 0) {
+                Usuario.create({
+                    nombre: nombre,
+                    apellido: apellido,
+                    edad: edad,
+                    email: email,
+                    dni: dni,
+                    password: password,
+                    telefono: telefono,
+                    numCuenta: numCuenta
+                }).then(usuario => {
+                    console.log("este es mi amigo", usuario);
+                    res.send(`${usuario.nombre}, bienvenid@ a este infierno`);
+                }).catch((error) => {
+                    res.send(error);
+                });
+            }else {
+                res.send("El usuario con ese e-mail ya existe en nuestra base de datos");
+            }
+        }).catch(error => {
+            res.send(error)
+        });
         //Guardamos en sequelize el usuario
 
-        Usuario.create({
-            nombre: nombre,
-            apellido: apellido,
-            edad: edad,
-            email: email,
-            dni: dni,
-            password: password,
-            telefono: telefono,
-            numCuenta: numCuenta
-        }).then(usuario => {
-            console.log("este es mi amigo", usuario);
-            res.send(`${usuario.nombre}, bienvenid@ a este infierno`);
-        });
+        
 
-    } catch (error) {
-        res.send(error);
-    }
 };
 
 UsuarioController.logUsuario = (req, res) => {
