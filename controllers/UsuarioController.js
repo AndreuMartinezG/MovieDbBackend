@@ -37,7 +37,7 @@ UsuarioController.traerUsuarioEmail = (req, res) => {
 UsuarioController.registraUsuario = async (req, res) => {
 
     //Registrando un usuario
-
+    console.log("Esstamos dentro")
         let nombre = req.body.nombre;
         let apellido = req.body.apellido;
         let edad = req.body.edad;
@@ -68,6 +68,7 @@ UsuarioController.registraUsuario = async (req, res) => {
 
             }
         }).then(datosRepetidos => {
+            console.log("Hemos pasado la fase de comprobacion")
             if (datosRepetidos == 0) {
                 Usuario.create({
                     nombre: nombre,
