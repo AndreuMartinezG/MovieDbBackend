@@ -57,13 +57,13 @@ UsuarioController.registraUsuario = async (req, res) => {
                             [Op.like] : email
                         }
                     },
-                    {
-                        nickname : {
-                            [Op.like] : nickname
-
-                            //------------------------- A MODIFICAR -----------------
-                        }
-                    }
+                    //{
+                    //    nickname : {
+                    //        [Op.like] : nickname
+//
+                    //        //------------------------- A MODIFICAR -----------------
+                    //    }
+                    //}
                 ]
 
             }
