@@ -10,22 +10,18 @@ module.exports = {
       },
       nombre: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       apellido: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       edad: {
         type: Sequelize.INTEGER
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       dni: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       rol: {
         type: Sequelize.BOOLEAN,
@@ -33,7 +29,6 @@ module.exports = {
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       telefono: {
         type: Sequelize.INTEGER
