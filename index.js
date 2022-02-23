@@ -4,7 +4,6 @@ const cors = require('cors');
 let PORT = process.env.PORT || 3000;
 const db = require('./db.js');
 const router = require('./router');
-const cookieParser = require('cookie-parser')
 
 //process.env.PORT || 
 
@@ -19,7 +18,7 @@ let corsOptions = {//CONFIGURO OPCIONES DE CORS
 
 app.use(express.json()); //PUEDO OBTENER JSON DEL BODY
 app.use(cors(corsOptions));  //USO CORS
-app.use(cookieParser())
+
 app.use(router);
 
 
