@@ -25,8 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     telefono: DataTypes.INTEGER,
     numCuenta: DataTypes.STRING,
-    token: DataTypes.STRING,
-    tokenEXP: DataTypes.STRING
     
   }, {
     sequelize,
