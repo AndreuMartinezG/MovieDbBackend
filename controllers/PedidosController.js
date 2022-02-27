@@ -1,3 +1,4 @@
+const { error } = require('console');
 const { Order } = require('../models/index');
 const PedidosController = {};
 
@@ -34,9 +35,12 @@ PedidosController.nuevoPedido = (req, res) => {
 //Buscamos Pedidos Todos los pedidos en DB
 PedidosController.todosPedidos = (req, res) =>{
 
-    Order.findAll({
-        where
-    })
+    Order.findAll()
+        .then(data => {
+            res.send(data)
+        }).catch(error=>{
+            res.send(error)
+        })
 }
 
 
