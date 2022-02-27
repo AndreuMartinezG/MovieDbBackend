@@ -10,13 +10,21 @@ const key = '210d6a5dd3f16419ce349c9f1b200d6d'
 
 
 
-PeliculasController.traeGeneros = async (req, res) => {
-    try {
-        let resultado = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US`)
-        res.send(console.log(resultado.data.genres))
-    } catch (error) {
-        console.log("El error es: ", error.response.status, error.response.statusText)
-    }
+
+//////////////////////// ENDPOINTS A Propia DB //////////////////////
+
+
+//Leer todos las Peliculas de nuestra propia DB
+PeliculasController.traePeliculas = (req, res) => {
+    
+    Pelicula.findAll()
+        .then(data => {
+            res.send(data)
+        })
+        .catch(error =>{
+            res.send(error)
+        })
+
 };
 
 
@@ -54,6 +62,30 @@ PeliculasController.registraPelicula = (req, res) => {
 
 };
 
+
+//Busca peliculas por Genero En propia BD
+PeliculasController.buscaGenero = (req, res) => {
+
+    let genero = req.body.genero;
+
+    Pelicula.findAll({
+        where: {genero : genero}
+    }).then(pelicula => {
+        res.send(pelicula)
+    }).catch(error =>{
+        res.send(error)
+    })
+
+}
+
+
+
+
+
+//////////////////////// ENDPOINTS A MOVIE DB //////////////////////
+
+
+//Busqueda de peliculas por titulo
 PeliculasController.peliculasTitulo = async (req, res) => {
 
     let busqueda = req.query.titulo;
@@ -68,8 +100,7 @@ PeliculasController.peliculasTitulo = async (req, res) => {
 }
 
 
-///// Endpoint Retos /////
-
+//Trae novedades de MOvieDB
 PeliculasController.traeNovedades = async (req, res) => {
 
     try {
@@ -80,6 +111,46 @@ PeliculasController.traeNovedades = async (req, res) => {
     }
 }
 
+
+//Busca Ultimas peliculas en MovieDB
+PeliculasController.peliculasUltimas = async (req, res) => {
+
+    try {
+        let resultado = await axios.get(`https://api.themoviedb.org/3/movie/latest?api_key=${key}&language=en-US`)
+        res.send(resultado.data)
+    } catch (error) {
+        console.log("El error es: ", error.response.status, error.response.statusText)
+    }
+}
+
+
+// Traemos las peliculas con mejor nota -- /mejor_valoradas
+PeliculasController.peliculasValoradas = async (req, res) => {
+
+    try {
+        let result = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`)
+        res.send(result.data);
+    } catch (error) {
+        console.log("El error es: ", error.response.status, error.response.statusText)
+    }
+}
+
+
+//Traemos las peliculas relacionadas con la pelicula ID
+PeliculasController.peliculasRelacionadas = async (req, res) => {
+
+    let id = req.params.id
+
+    try {
+        let resultado = await axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${key}&language=en-US&page=1`)
+        res.send(resultado.data)
+    } catch (error) {
+        console.log("El error es: ", error.response.status, error.response.statusText)
+    }
+}
+
+
+//Busca peliculas por ID en MovieDB
 PeliculasController.peliculasPorId = async (req, res) => {
 
     let id = req.params.id
@@ -92,6 +163,8 @@ PeliculasController.peliculasPorId = async (req, res) => {
     }
 }
 
+
+//Busca reviws de pelicula por ID en MOvieDB
 PeliculasController.peliculasIdReviews = async (req, res) => {
 
     let id = req.params.id
@@ -104,37 +177,7 @@ PeliculasController.peliculasIdReviews = async (req, res) => {
     }
 }
 
-PeliculasController.peliculasUltimas = async (req, res) => {
 
-    try {
-        let resultado = await axios.get(`https://api.themoviedb.org/3/movie/latest?api_key=${key}&language=en-US`)
-        res.send(resultado.data)
-    } catch (error) {
-        console.log("El error es: ", error.response.status, error.response.statusText)
-    }
-}
-
-PeliculasController.peliculasValoradas = async (req, res) => {
-
-    try {
-        let result = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`)
-        res.send(result.data);
-    } catch (error) {
-        console.log("El error es: ", error.response.status, error.response.statusText)
-    }
-}
-
-PeliculasController.peliculasRelacionadas = async (req, res) => {
-
-    let id = req.params.id
-
-    try {
-        let resultado = await axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${key}&language=en-US&page=1`)
-        res.send(resultado.data)
-    } catch (error) {
-        console.log("El error es: ", error.response.status, error.response.statusText)
-    }
-}
 
 
 
