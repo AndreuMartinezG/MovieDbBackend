@@ -35,8 +35,8 @@ PeliculasController.registraPelicula = (req, res) => {
     let titulo = req.body.titulo;
     let genero = req.body.genero;
     let sinopsis = req.body.sinopsis;
-    let adult = req.body.email;
-    let fecha = req.body.dni;
+    let adult = req.body.adult;
+    let fecha = req.body.fecha;
 
     Pelicula.findAll({
         where: { titulo: titulo }
