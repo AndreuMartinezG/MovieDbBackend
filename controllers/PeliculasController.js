@@ -1,6 +1,7 @@
 const axios = require('axios');
 const PeliculasController = {};
 const { Pelicula } = require('../models/index');
+const { Op } = require('sequelize')
 
 
 
@@ -79,6 +80,26 @@ PeliculasController.buscaGenero = (req, res) => {
 }
 
 
+//Busca peliculas por Adult En propia BD
+PeliculasController.buscaAdult = (req, res) => {
+
+    Pelicula.findAll({
+        where: { 
+            [Op.not]: [
+                {
+                    adult : {
+                        [Op.like] : 0
+                    }
+                }
+            ]
+        }
+    }).then (pelicula =>{
+        res.send(pelicula)
+    }).catch(error =>{
+        res.send(error)
+    })
+
+}
 
 
 
