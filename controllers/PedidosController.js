@@ -163,8 +163,8 @@ PedidosController.infoUsuarios = async (req, res) => {
                             peliculas.titulo AS Titulo_Alquilado,
                             orders.fechaEntrega AS Fecha_Alquiler
                     FROM usuarios 
-                        INNER JOIN orders ON usuarios.id = orders.usuarioId
-                        INNER JOIN peliculas ON peliculas.id = orders.peliculaId `;
+                            INNER JOIN orders ON usuarios.id = orders.usuarioId
+                            INNER JOIN peliculas ON peliculas.id = orders.peliculaId `;
     try {
         let resultado = await Order.sequelize.query(consulta, {
             type: Order.sequelize.QueryTypes.SELECT
@@ -180,6 +180,33 @@ PedidosController.infoUsuarios = async (req, res) => {
         res.send(error)
     }
 }
+
+
+//Borrar pedidos por ID en DB
+PedidosController.borrarPorId = async (req, res) => {
+
+    let id = req.params.id
+
+    let consulta = `DELETE FROM orders WHERE (id = ${id});`;
+
+    try {
+        let resultado = await Order.sequelize.query(consulta, {
+            type: Order.sequelize.QueryTypes.DELETE
+        });
+
+        if (resultado != 0) {
+            res.send("Pedido eliminado con exito!");
+        } else {
+            res.send("Ha ocurrido algun error al borrar los pedidos")
+        }
+
+    } catch (error) {
+        res.send(error)
+    }
+
+}
+
+
 
 module.exports = PedidosController;
 

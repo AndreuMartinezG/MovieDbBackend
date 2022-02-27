@@ -28,7 +28,12 @@ router.get('/paterntalAlert', auth, PedidosController.paterntalAlert)
 //Busqueda avanzada de Usuarios con alquiler
 router.get('/avanzado/usuarios', auth, PedidosController.infoUsuarios)
 
+//Busqueda Avanzada de Usuarios por Nombre
+router.get('/avanzado/usuarios/:nombre')
+//Borrar pedidos de Ususarios por Nombre
+
+
 //Borrar pedidos por ID en DB
-//router.delete('/:id', auth, PedidosController.borrarPorId)
+router.delete('/:id', auth, PedidosController.borrarPorId)
 
 module.exports = router;
