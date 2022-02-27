@@ -20,10 +20,8 @@ router.delete('/', auth, PedidosController.borrarTodos)
 //Busqueda Avanzada de pedido en DB
 router.get('/avanzado', auth, PedidosController.infoPedidoAvanzado)
 
-//router.get('/', auth, PedidosController.getAll);
 
-
-//Borramos pedidos en DB por ID
-//router.delete('/:id', auth, PedidosController.delete);
+//Busqueda de Usuarios Menores con peliculas para adultos Alquiladas
+router.get('/alerta', auth, PedidosController.alert)
 
 module.exports = router;

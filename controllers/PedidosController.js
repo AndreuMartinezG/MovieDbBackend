@@ -76,14 +76,43 @@ PedidosController.infoPedidoAvanzado = async (req,res) => {
                     FROM usuarios 
                             INNER JOIN orders ON usuarios.id = orders.usuarioId 
                             INNER JOIN peliculas ON peliculas.id = orders.peliculaId `; 
+    try {
+        let resultado = await Order.sequelize.query(consulta,{
+            type: Order.sequelize.QueryTypes.SELECT});
+    
+        if(resultado){
+            res.send(resultado);
+        }else{
+            res.send("Ha ocurrido algun error al hacer la consulta")
+        }
 
-    let resultado = await Order.sequelize.query(consulta,{
-        type: Order.sequelize.QueryTypes.SELECT});
+    }catch(error){
+        res.send(error)
+    }
+    
+
+}
+
+
+//Busqueda de Usuarios Menores con peliculas para adultos Alquiladas
+PedidosController.alert = async (req, res) => {
+
+    let consulta = `SELECT usuarios.nombre AS Nombre,usuarios.email AS correo, usuarios.edad AS Edad,  peliculas.adult AS Adultos, peliculas.titulo AS Titulo_Alquilado
+    FROM usuarios 
+    INNER JOIN orders ON usuarios.id = orders.usuarioId 
+    INNER JOIN peliculas ON peliculas.id = orders.peliculaId
+    WHERE edad < 18 AND adult = 1 ORDER BY edad DESC`;
+
+    let resultado = await Order.sequelize.query(consulta, {
+        type: Order.sequelize.QueryTypes.SELECT
+    });
 
     if(resultado){
         res.send(resultado);
     }
 
 }
+
+
 
 module.exports = PedidosController;
