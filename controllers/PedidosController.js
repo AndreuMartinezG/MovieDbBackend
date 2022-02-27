@@ -27,6 +27,34 @@ PedidosController.nuevoPedido = (req, res) => {
         .catch((error => {
             res.send(error)
         }))
+}
+
+
+
+//Buscamos Pedidos Todos los pedidos en DB
+PedidosController.todosPedidos = (req, res) =>{
+
+    Order.findAll({
+        where
+    })
+}
+
+
+
+//Busqueda Avanzada de pedido en DB
+PedidosController.infoPedidoAvanzado = async (req,res) => {
+
+    let consulta = `SELECT usuarios.nombre AS Nombre,usuarios.email AS correo, usuarios.edad AS Edad,  peliculas.titulo AS Titulo_Alquilado , peliculas.genero AS Genero
+    FROM usuarios INNER JOIN orders 
+    ON usuarios.id = orders.usuarioId INNER JOIN peliculas 
+    ON peliculas.id = orders.peliculaId`; 
+
+    let resultado = await Order.sequelize.query(consulta,{
+        type: Order.sequelize.QueryTypes.SELECT});
+
+    if(resultado){
+        res.send(resultado);
+    }
 
 }
 

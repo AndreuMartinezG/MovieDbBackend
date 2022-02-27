@@ -8,7 +8,14 @@ const PedidosController = require('../controllers/PedidosController');
 //Creamos Un pedido nuevo
 router.post('/', auth, PedidosController.nuevoPedido);
 
-//Buscamos Pedidos en DB
+
+//Buscamos Pedidos Todos los pedidos en DB
+router.get('/', auth, PedidosController.todosPedidos)
+
+
+//Busqueda Avanzada de pedido en DB
+router.get('/avanzado', auth, PedidosController.infoPedidoAvanzado)
+
 //router.get('/', auth, PedidosController.getAll);
 
 

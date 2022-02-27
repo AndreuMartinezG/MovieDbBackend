@@ -17,9 +17,10 @@ UsuarioController.traeUsuarios = (req, res) => {
         .then(data => {
 
             res.send(data)
-        });
+        }).catch (error =>{
+            res.send(error)
+        })
 };
-
 
 
 //Registro de usuarios
