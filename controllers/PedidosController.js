@@ -32,12 +32,12 @@ PedidosController.nuevoPedido = (req, res) => {
 
 
 //Buscamos Pedidos Todos los pedidos en DB
-PedidosController.todosPedidos = (req, res) =>{
+PedidosController.todosPedidos = (req, res) => {
 
     Order.findAll()
         .then(data => {
             res.send(data)
-        }).catch(error=>{
+        }).catch(error => {
             res.send(error)
         })
 }
@@ -45,18 +45,20 @@ PedidosController.todosPedidos = (req, res) =>{
 
 
 //Borramos todos los pedidos en DB
-PedidosController.borrarTodos = (req, res) => {
+PedidosController.borrarTodos = async (req, res) => {
+
+    let consulta = `DELETE FROM orders`;
 
     try {
+        let resultado = await Order.sequelize.query(consulta, {
+            type: Order.sequelize.QueryTypes.DELETE
+        });
 
-        Order.destroy({
-            where: {},
-            truncate: false
-        }).then(pedidosEliminados => {
-                res.send(`se han eliminado ${pedidosEliminados} pedidos`)
-        }).catch(error =>{
-            res.send(error)
-        })
+        if (resultado != 0) {
+            res.send("Pedidos Eliminados con exito!");
+        } else {
+            res.send("Ha ocurrido algun error al borrar los pedidos")
+        }
 
     } catch (error) {
         res.send(error)
@@ -65,7 +67,7 @@ PedidosController.borrarTodos = (req, res) => {
 
 
 //Busqueda Avanzada de pedido en DB
-PedidosController.infoPedidoAvanzado = async (req,res) => {
+PedidosController.infoPedidoAvanzado = async (req, res) => {
 
     let consulta = `SELECT  usuarios.nombre AS Nombre,
                             usuarios.email AS correo, 
@@ -75,21 +77,22 @@ PedidosController.infoPedidoAvanzado = async (req,res) => {
                             orders.fechaEntrega AS Fecha_Alquiler
                     FROM usuarios 
                             INNER JOIN orders ON usuarios.id = orders.usuarioId 
-                            INNER JOIN peliculas ON peliculas.id = orders.peliculaId `; 
+                            INNER JOIN peliculas ON peliculas.id = orders.peliculaId `;
     try {
-        let resultado = await Order.sequelize.query(consulta,{
-            type: Order.sequelize.QueryTypes.SELECT});
-    
-        if(resultado){
+        let resultado = await Order.sequelize.query(consulta, {
+            type: Order.sequelize.QueryTypes.SELECT
+        });
+
+        if (resultado) {
             res.send(resultado);
-        }else{
+        } else {
             res.send("Ha ocurrido algun error al hacer la consulta")
         }
 
-    }catch(error){
+    } catch (error) {
         res.send(error)
     }
-    
+
 
 }
 
@@ -97,17 +100,21 @@ PedidosController.infoPedidoAvanzado = async (req,res) => {
 //Busqueda de Usuarios Menores con peliculas para adultos Alquiladas
 PedidosController.paterntalAlert = async (req, res) => {
 
-    let consulta = `SELECT usuarios.nombre AS Nombre,usuarios.email AS correo, usuarios.edad AS Edad,  peliculas.adult AS Adultos, peliculas.titulo AS Titulo_Alquilado
-    FROM usuarios 
-    INNER JOIN orders ON usuarios.id = orders.usuarioId 
-    INNER JOIN peliculas ON peliculas.id = orders.peliculaId
-    WHERE edad < 18 AND adult = 1 ORDER BY edad DESC`;
+    let consulta = `SELECT  usuarios.nombre AS Nombre,
+                            usuarios.email AS correo, 
+                            usuarios.edad AS Edad,  
+                            peliculas.adult AS Adultos, 
+                            peliculas.titulo AS Titulo_Alquilado
+                    FROM usuarios 
+                            INNER JOIN orders ON usuarios.id = orders.usuarioId 
+                            INNER JOIN peliculas ON peliculas.id = orders.peliculaId
+                    WHERE edad < 18 AND adult = 1 ORDER BY edad DESC`;
 
     let resultado = await Order.sequelize.query(consulta, {
         type: Order.sequelize.QueryTypes.SELECT
     });
 
-    if(resultado){
+    if (resultado) {
         res.send(resultado);
     }
 
@@ -116,3 +123,27 @@ PedidosController.paterntalAlert = async (req, res) => {
 
 
 module.exports = PedidosController;
+
+
+
+
+
+
+
+
+
+
+// try {
+
+//     Order.destroy({
+//         where: {},
+//         truncate: false
+//     }).then(pedidosEliminados => {
+//             res.send(`se han eliminado ${pedidosEliminados} pedidos`)
+//     }).catch(error =>{
+//         res.send(error)
+//     })
+
+// } catch (error) {
+//     res.send(error)
+// }
