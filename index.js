@@ -22,7 +22,7 @@ app.use(router);
 
 
 app.get('/', (req, res) => {res.send(//PANTALLA DE BIENVENIDA EN PANTALLA DE INICIO
-    '<body style="margin: 0;background-color:rgb(179, 179, 255);font-family: Franklin Gothic Medium, Arial Narrow, Arial, sans-serif;"><div style="width:100%;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:space-between"><div style="background-color:black; width:100vw; height:3em"></div><h1 style="font-size:4em">Movie DB API</h1><p style="font-size:2em">Se recomienda el uso de POSTMAN para una mejor experiencia del BackEnd!!... Puedes ver la documentación para usar la API en el siguiente enlace:</p><a href="https://github.com/AndreuMartinezG/MovieDbBackend" style="text-decoration:none; color:red; font-size:2em">Readme en github</a><div style="background-color:black; width:100vw; height:3em; margin-top:3em"></div></div></body>'
+    '<body style="margin: 0;background-color:rgb(179, 179, 255);font-family: Franklin Gothic Medium, Arial Narrow, Arial, sans-serif;"><div style="width:100%;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:space-between"><div style="background-color:black; width:100vw; height:3em"></div><h1 style="font-size:4em">Movie DB API</h1><p style="font-size:2em">Puedes ver la documentación para usar la API en el siguiente enlace:</p><a href="https://github.com/AndreuMartinezG/MovieDbBackend" style="text-decoration:none; color:red; font-size:2em">Readme en github</a><div style="background-color:black; width:100vw; height:3em; margin-top:3em"></div></div></body>'
 );});
 
 db.then(() => {
