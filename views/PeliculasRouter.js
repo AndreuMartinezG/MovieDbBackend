@@ -7,16 +7,16 @@ const PeliculasController = require('../controllers/PeliculasController');
 
 //CRUD RESTful
 
-//Leer todos los usuarios
+//Leer todos las Peliculas de MOvieDB
 router.get('/', auth, PeliculasController.traeGeneros);
 //http://localhost:3000/peliculas
 
-//Registro
+//Registro Peliculas
 router.post('/', auth, PeliculasController.registraPelicula);
 //http://localhost:3000/peliculas
 
 
-//Busqueda de peliculas por titulo
+//Registro de Peliculas en la BD propia
 router.get('/titulo', auth, PeliculasController.peliculasTitulo)
 
 //Busqueda de novedades

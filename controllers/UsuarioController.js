@@ -46,13 +46,12 @@ UsuarioController.registraUsuario = async (req, res) => {
                         [Op.like]: email
                     }
                 },
-                //{
-                //    nickname : {
-                //        [Op.like] : nickname
-                //
-                //        //------------------------- A MODIFICAR -----------------
-                //    }
-                //}
+                {
+                    telefono : {
+                        [Op.like] : telefono
+                
+                    }
+                }
             ]
 
         }

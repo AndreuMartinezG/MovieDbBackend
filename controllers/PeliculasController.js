@@ -7,6 +7,9 @@ const { Pelicula } = require('../models/index');
 //Funciones del controlador
 const key = '210d6a5dd3f16419ce349c9f1b200d6d'
 
+
+
+
 PeliculasController.traeGeneros = async (req, res) => {
     try {
         let resultado = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US`)
@@ -16,6 +19,8 @@ PeliculasController.traeGeneros = async (req, res) => {
     }
 };
 
+
+//Registro de Peliculas en la BD propia
 PeliculasController.registraPelicula = (req, res) => {
 
     let titulo = req.body.titulo;
