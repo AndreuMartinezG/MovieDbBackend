@@ -4,7 +4,7 @@ const PedidosController = {};
 
 
 
-
+//Creacion de pedido en DB propia
 PedidosController.nuevoPedido = (req, res) => {
 
     let body = req.body;
