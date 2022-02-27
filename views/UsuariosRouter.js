@@ -14,16 +14,19 @@ router.get('/', auth, UsuarioController.traeUsuarios);
 router.post('/', UsuarioController.registraUsuario);
 
 //Borra todos los usuarios de la base de datos
-router.delete('/', auth, UsuarioController.deleteAll)
+router.delete('/', auth, isAdmin, UsuarioController.deleteAll)
 
 //Login
 router.post('/login', UsuarioController.logUsuario);
+
+//Actualizar pass usuario
+router.put('/newpassword', auth, UsuarioController.updatePassword);
 
 //Busca en la db usuarios por ID
 router.get('/:id', auth, UsuarioController.traerUsuarioId);
 
 //Borra de la db usuarios por ID
-router.delete('/:id', auth, UsuarioController.deleteById);
+router.delete('/:id', auth, isAdmin, UsuarioController.deleteById);
 
 //Actualiza datos de usuarios en la DB
 router.put('/:id', auth, UsuarioController.updateProfile);
