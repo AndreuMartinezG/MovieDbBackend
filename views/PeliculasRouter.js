@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require("../middlewares/auth");
+const isAdmin = require("../middlewares/isAdmin")
 
 const PeliculasController = require('../controllers/PeliculasController');
 
@@ -26,6 +27,14 @@ router.get('/genero', auth, PeliculasController.buscaGenero);
 
 //Busca peliculas por Adult En propia BD
 router.get('/adult', auth, PeliculasController.buscaAdult);
+
+
+//Buscar Peliculas por Genero y Titulo en propia DB
+router.get('/genero_titulo', auth, PeliculasController.buscaGenTit)
+
+//Borrar Pelicula DB propia
+
+router.delete('/', auth, is)
 
 
 //////////////////////// ENDPOINTS A MOVIE DB //////////////////////

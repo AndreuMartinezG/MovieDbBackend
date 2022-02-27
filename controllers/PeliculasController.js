@@ -17,12 +17,12 @@ const key = '210d6a5dd3f16419ce349c9f1b200d6d'
 
 //Leer todos las Peliculas de nuestra propia DB
 PeliculasController.traePeliculas = (req, res) => {
-    
+
     Pelicula.findAll()
         .then(data => {
             res.send(data)
         })
-        .catch(error =>{
+        .catch(error => {
             res.send(error)
         })
 
@@ -70,10 +70,10 @@ PeliculasController.buscaGenero = (req, res) => {
     let genero = req.body.genero;
 
     Pelicula.findAll({
-        where: {genero : genero}
+        where: { genero: genero }
     }).then(pelicula => {
         res.send(pelicula)
-    }).catch(error =>{
+    }).catch(error => {
         res.send(error)
     })
 
@@ -84,22 +84,62 @@ PeliculasController.buscaGenero = (req, res) => {
 PeliculasController.buscaAdult = (req, res) => {
 
     Pelicula.findAll({
-        where: { 
+        where: {
             [Op.not]: [
                 {
-                    adult : {
-                        [Op.like] : 0
+                    adult: {
+                        [Op.like]: 0
                     }
                 }
             ]
         }
-    }).then (pelicula =>{
+    }).then(pelicula => {
         res.send(pelicula)
-    }).catch(error =>{
+    }).catch(error => {
         res.send(error)
     })
 
 }
+
+
+//Buscar Peliculas por Genero y Titulo en propia DB
+PeliculasController.buscaGenTit = (req, res) => {
+
+    let titulo = req.body.titulo
+    let genero = req.body.genero
+
+    Pelicula.findAll({
+        where: {
+
+            [Op.and]: [
+                {
+                    titulo: {
+                        [Op.like]: titulo
+                    }
+                },
+                {
+                    genero: {
+                        [Op.like]: genero
+                    }
+                }
+            ]
+
+        }
+    }).then(pelicula => {
+
+        if (pelicula != 0) {
+            res.send(pelicula);
+        } else {
+            res.send(`Película no encontrada`);
+        };
+
+    }).catch(error => {
+        res.send(error);
+    })
+}
+
+
+
 
 
 
