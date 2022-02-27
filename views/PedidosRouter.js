@@ -13,6 +13,9 @@ router.post('/', auth, PedidosController.nuevoPedido);
 router.get('/', auth, PedidosController.todosPedidos)
 
 
+//Borramos todos los pedidos en DB
+router.delete('/', auth, PedidosController.borrarTodos)
+
 
 //Busqueda Avanzada de pedido en DB
 router.get('/avanzado', auth, PedidosController.infoPedidoAvanzado)

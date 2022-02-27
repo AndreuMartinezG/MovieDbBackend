@@ -1,4 +1,3 @@
-const { error } = require('console');
 const { Order } = require('../models/index');
 const PedidosController = {};
 
@@ -43,6 +42,26 @@ PedidosController.todosPedidos = (req, res) =>{
         })
 }
 
+
+
+//Borramos todos los pedidos en DB
+PedidosController.borrarTodos = (req, res) => {
+
+    try {
+
+        Order.destroy({
+            where: {},
+            truncate: false
+        }).then(pedidosEliminados => {
+                res.send(`se han eliminado ${pedidosEliminados} pedidos`)
+        }).catch(error =>{
+            res.send(error)
+        })
+
+    } catch (error) {
+        res.send(error)
+    }
+}
 
 
 //Busqueda Avanzada de pedido en DB
