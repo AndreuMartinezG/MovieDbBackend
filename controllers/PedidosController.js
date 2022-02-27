@@ -8,47 +8,51 @@ const PedidosController = {};
 PedidosController.nuevoPedido = async (req, res) => {
 
     let body = req.body;
-    let fechaPedido = '2022-02-27 14:31:39'
 
-    let consulta = `INSERT INTO orders (precio, peliculaId, usuarioId, fechaEntrega, createdAt, updatedAt) 
-     VALUES ('${body.precio}', '${body.peliculaId}', '${body.usuarioId}', '${body.fecha}');`;
-    
-    try {
-        let resultado = await Order.sequelize.query(consulta, {
-            type: Order.sequelize.QueryTypes.INSERT
-        });
+    //////////////INTENTO DE CREAR PEDIDO POR RAW SQL /////////////////
 
-        if (resultado) {
-            res.send(resultado);
+    // let fechaPedido = '2022-02-27 14:31:39'
+
+    // let consulta = `INSERT INTO orders (precio, peliculaId, usuarioId, fechaEntrega, createdAt, updatedAt) 
+    //  VALUES ('${body.precio}', '${body.peliculaId}', '${body.usuarioId}', '${body.fechaEntrega}', '${fechaPedido}', '${fechaPedido}');`;
+
+    // try {
+    //     let resultado = await Order.sequelize.query(consulta, {
+    //         type: Order.sequelize.QueryTypes.INSERT
+    //     });
+
+    //     if (resultado) {
+    //         res.send(resultado);
+    //     } else {
+    //         res.send("Ha ocurrido algun error al hacer la consulta")
+    //     }
+
+    // } catch (error) {
+    //     res.send(error)
+    // }
+
+
+    //////////////OPCION INICIAL PARA CREAR PEDIDO /////////////////
+    Order.create({
+        precio: body.precio,
+        peliculaId: body.peliculaId,
+        usuarioId: body.usuarioId,
+        fechaEntrega: body.fechaEntrega
+    }).then(pedido => {
+        if (pedido) {
+            res.send(pedido)
         } else {
-            res.send("Ha ocurrido algun error al hacer la consulta")
+            res.send("La creación de un nuevo pedido ha fallado");
         }
-
-    } catch (error) {
+    }).catch((error => {
         res.send(error)
-    }
-
-
-    // Order.create({
-    //     precio: body.precio,
-    //     peliculaId: body.peliculaId,
-    //     usuarioId: body.usuarioId,
-    //     fechaEntrega: body.fechaEntrega
-    // }).then(pedido => {
-    //         if (pedido) {
-    //             res.send(pedido)
-    //         } else {
-    //             res.send("La creación de un nuevo pedido ha fallado");
-    //         }
-    // }).catch((error => {
-    //         res.send(error)
-    // }))
+    }))
 }
 
 
 
 //Buscamos Pedidos Todos los pedidos en DB
-PedidosController.todosPedidos = async(req, res) => {
+PedidosController.todosPedidos = async (req, res) => {
 
     let consulta = `SELECT * FROM orders`;
 
@@ -147,6 +151,35 @@ PedidosController.paterntalAlert = async (req, res) => {
 }
 
 
+//Busqueda avanzada de Usuarios con alquiler
+PedidosController.infoUsuarios = async (req, res) => {
+    
+    let consulta = `SELECT  usuarios.nombre AS Nombre,
+                            usuarios.apellido AS Apellido,
+                            usuarios.email AS correo, 
+                            usuarios.edad AS Edad,
+                            usuarios.telefono AS NºTelefono,
+                            usuarios.dni AS DNI,
+                            peliculas.titulo AS Titulo_Alquilado,
+                            orders.fechaEntrega AS Fecha_Alquiler
+                    FROM usuarios 
+                        INNER JOIN orders ON usuarios.id = orders.usuarioId
+                        INNER JOIN peliculas ON peliculas.id = orders.peliculaId `;
+    try {
+        let resultado = await Order.sequelize.query(consulta, {
+            type: Order.sequelize.QueryTypes.SELECT
+        });
+
+        if (resultado) {
+            res.send(resultado);
+        } else {
+            res.send("Ha ocurrido algun error al hacer la consulta")
+        }
+
+    } catch (error) {
+        res.send(error)
+    }
+}
 
 module.exports = PedidosController;
 

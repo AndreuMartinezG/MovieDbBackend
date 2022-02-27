@@ -24,4 +24,11 @@ router.get('/avanzado', auth, PedidosController.infoPedidoAvanzado)
 //Busqueda de Usuarios Menores con peliculas para adultos Alquiladas
 router.get('/paterntalAlert', auth, PedidosController.paterntalAlert)
 
+
+//Busqueda avanzada de Usuarios con alquiler
+router.get('/avanzado/usuarios', auth, PedidosController.infoUsuarios)
+
+//Borrar pedidos por ID en DB
+//router.delete('/:id', auth, PedidosController.borrarPorId)
+
 module.exports = router;
