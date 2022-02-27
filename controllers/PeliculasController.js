@@ -1,7 +1,7 @@
 const axios = require('axios');
-const res = require('express/lib/response');
-const { redirect } = require('express/lib/response');
 const PeliculasController = {};
+const { Pelicula } = require('../models/index');
+
 
 
 //Funciones del controlador
@@ -17,6 +17,35 @@ PeliculasController.traeGeneros = async (req, res) => {
 };
 
 PeliculasController.registraPelicula = (req, res) => {
+
+    let titulo = req.body.titulo;
+    let genero = req.body.genero;
+    let sinopsis = req.body.sinopsis;
+    let adult = req.body.email;
+    let fecha = req.body.dni;
+
+    Pelicula.findAll({
+        where: { titulo: titulo }
+    }).then(peliculaRepetida => {
+        if (peliculaRepetida == 0) {
+            Pelicula.create({
+                titulo: titulo,
+                genero: genero,
+                sinopsis: sinopsis,
+                adult: adult,
+                fecha: fecha
+            }).then(pelicula => {
+                res.send(`${pelicula.titulo} ha sido registrada`)
+            }).catch((error) => {
+                res.send(error);
+            });
+        } else {
+            res.send("La pelicula ya esta registrada")
+        }
+
+    }).catch(error => {
+        res.send(error)
+    });
 
 };
 
@@ -61,21 +90,21 @@ PeliculasController.peliculasPorId = async (req, res) => {
 PeliculasController.peliculasIdReviews = async (req, res) => {
 
     let id = req.params.id
-    try{
+    try {
         let resultado = await axios.get(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${key}&language=en-US&page=1`)
         res.send(resultado.data)
 
-    }catch(error){
+    } catch (error) {
         console.log("El error es: ", error.response.status, error.response.statusText)
     }
 }
 
 PeliculasController.peliculasUltimas = async (req, res) => {
 
-    try{
+    try {
         let resultado = await axios.get(`https://api.themoviedb.org/3/movie/latest?api_key=${key}&language=en-US`)
         res.send(resultado.data)
-    }catch(error){
+    } catch (error) {
         console.log("El error es: ", error.response.status, error.response.statusText)
     }
 }
@@ -94,10 +123,10 @@ PeliculasController.peliculasRelacionadas = async (req, res) => {
 
     let id = req.params.id
 
-    try{
+    try {
         let resultado = await axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${key}&language=en-US&page=1`)
         res.send(resultado.data)
-    }catch(error){
+    } catch (error) {
         console.log("El error es: ", error.response.status, error.response.statusText)
     }
 }
