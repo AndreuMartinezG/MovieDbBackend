@@ -64,6 +64,28 @@ PeliculasController.registraPelicula = (req, res) => {
 };
 
 
+//Borrar Pelicula DB propia
+PeliculasController.borrarPelicula = (req, res) => {
+
+    let id = req.query.id
+
+    try {
+
+        Pelicula.destroy({
+            where: { id: id },
+            truncate: false
+        })
+            .then(peliculaDel => {
+                res.send(`La pelicula ${id} ha sido eliminada`)
+            })
+
+    } catch (error) {
+        res.send(error)
+    }
+
+}
+
+
 //Busca peliculas por Genero En propia BD
 PeliculasController.buscaGenero = (req, res) => {
 

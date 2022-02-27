@@ -20,6 +20,8 @@ router.get('/', auth, PeliculasController.traePeliculas);
 router.post('/', auth, PeliculasController.registraPelicula);
 //http://localhost:3000/peliculas
 
+//Borrar Pelicula DB propia
+router.delete('/', auth, isAdmin, PeliculasController.borrarPelicula)
 
 //Busca peliculas por Genero En propia BD
 router.get('/genero', auth, PeliculasController.buscaGenero);
@@ -32,9 +34,7 @@ router.get('/adult', auth, PeliculasController.buscaAdult);
 //Buscar Peliculas por Genero y Titulo en propia DB
 router.get('/genero_titulo', auth, PeliculasController.buscaGenTit)
 
-//Borrar Pelicula DB propia
 
-router.delete('/', auth, is)
 
 
 //////////////////////// ENDPOINTS A MOVIE DB //////////////////////
