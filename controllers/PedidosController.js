@@ -95,7 +95,7 @@ PedidosController.infoPedidoAvanzado = async (req,res) => {
 
 
 //Busqueda de Usuarios Menores con peliculas para adultos Alquiladas
-PedidosController.alert = async (req, res) => {
+PedidosController.paterntalAlert = async (req, res) => {
 
     let consulta = `SELECT usuarios.nombre AS Nombre,usuarios.email AS correo, usuarios.edad AS Edad,  peliculas.adult AS Adultos, peliculas.titulo AS Titulo_Alquilado
     FROM usuarios 

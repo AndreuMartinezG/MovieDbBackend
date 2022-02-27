@@ -22,6 +22,6 @@ router.get('/avanzado', auth, PedidosController.infoPedidoAvanzado)
 
 
 //Busqueda de Usuarios Menores con peliculas para adultos Alquiladas
-router.get('/alerta', auth, PedidosController.alert)
+router.get('/paterntalAlert', auth, PedidosController.paterntalAlert)
 
 module.exports = router;
