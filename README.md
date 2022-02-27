@@ -30,7 +30,7 @@
 - BackEnd Deployed [HEROKU](https://movie-db-geekshubs.herokuapp.com)<br>
 - Aqui una imagen del diseño de la Base de datos:
   
-![image](../MovieDbBackend/screenshot/db.png)
+![image](screenshot/db.png)
 
 
 ## 2. Descripción del proyecto.
