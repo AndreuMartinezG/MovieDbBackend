@@ -5,41 +5,67 @@ const PedidosController = {};
 
 
 //Creacion de pedido en DB propia
-PedidosController.nuevoPedido = (req, res) => {
+PedidosController.nuevoPedido = async (req, res) => {
 
     let body = req.body;
+    let fechaPedido = '2022-02-27 14:31:39'
 
-    console.log("este es body", body)
+    let consulta = `INSERT INTO orders (precio, peliculaId, usuarioId, fechaEntrega, createdAt, updatedAt) 
+     VALUES ('${body.precio}', '${body.peliculaId}', '${body.usuarioId}', '${body.fecha}');`;
+    
+    try {
+        let resultado = await Order.sequelize.query(consulta, {
+            type: Order.sequelize.QueryTypes.INSERT
+        });
 
-    Order.create({
-        precio: body.precio,
-        peliculaId: body.peliculaId,
-        usuarioId: body.usuarioId,
-        fechaEntrega: body.fechaEntrega
-    })
-        .then(pedido => {
-            if (pedido) {
-                res.send(pedido)
-            } else {
-                res.send("La creación de un nuevo pedido ha fallado");
-            }
-        })
-        .catch((error => {
-            res.send(error)
-        }))
+        if (resultado) {
+            res.send(resultado);
+        } else {
+            res.send("Ha ocurrido algun error al hacer la consulta")
+        }
+
+    } catch (error) {
+        res.send(error)
+    }
+
+
+    // Order.create({
+    //     precio: body.precio,
+    //     peliculaId: body.peliculaId,
+    //     usuarioId: body.usuarioId,
+    //     fechaEntrega: body.fechaEntrega
+    // }).then(pedido => {
+    //         if (pedido) {
+    //             res.send(pedido)
+    //         } else {
+    //             res.send("La creación de un nuevo pedido ha fallado");
+    //         }
+    // }).catch((error => {
+    //         res.send(error)
+    // }))
 }
 
 
 
 //Buscamos Pedidos Todos los pedidos en DB
-PedidosController.todosPedidos = (req, res) => {
+PedidosController.todosPedidos = async(req, res) => {
 
-    Order.findAll()
-        .then(data => {
-            res.send(data)
-        }).catch(error => {
-            res.send(error)
-        })
+    let consulta = `SELECT * FROM orders`;
+
+    try {
+        let resultado = await Order.sequelize.query(consulta, {
+            type: Order.sequelize.QueryTypes.SELECT
+        });
+
+        if (resultado) {
+            res.send(resultado);
+        } else {
+            res.send("Ha ocurrido algun error al hacer la consulta")
+        }
+
+    } catch (error) {
+        res.send(error)
+    }
 }
 
 
@@ -130,20 +156,3 @@ module.exports = PedidosController;
 
 
 
-
-
-
-// try {
-
-//     Order.destroy({
-//         where: {},
-//         truncate: false
-//     }).then(pedidosEliminados => {
-//             res.send(`se han eliminado ${pedidosEliminados} pedidos`)
-//     }).catch(error =>{
-//         res.send(error)
-//     })
-
-// } catch (error) {
-//     res.send(error)
-// }
