@@ -36,12 +36,7 @@ module.exports = {
 
       fechaEntrega: {
         allowNull: false,
-        type: Sequelize.DATE
-      },
-
-      fechaDevolucion: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
 
       createdAt: {

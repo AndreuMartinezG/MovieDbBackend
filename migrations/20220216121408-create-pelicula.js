@@ -21,11 +21,8 @@ module.exports = {
       adult: {
         type: Sequelize.BOOLEAN
       },
-      imagen: {
-        type: Sequelize.STRING
-      },
       fecha: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
