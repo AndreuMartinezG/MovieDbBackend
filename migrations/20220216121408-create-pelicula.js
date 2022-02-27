@@ -19,7 +19,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       adult: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue:false,
       },
       fecha: {
         type: Sequelize.STRING
