@@ -32,7 +32,7 @@ router.get('/adult', auth, PeliculasController.buscaAdult);
 
 
 //Buscar Peliculas por Genero y Titulo en propia DB
-router.get('/genero_titulo', auth, PeliculasController.buscaGenTit)
+router.get('/genero_titulo', auth, PeliculasController.buscaGenTit);
 
 
 

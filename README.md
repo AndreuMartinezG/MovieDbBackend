@@ -13,20 +13,19 @@
 
 [English version](#English-version)<br>
 
-## Indice:
+## 0. Indice:
 
 
   [1. Introduccion:](#1-introducción)<br>
   [2. Descripción del proyecto.](#2-como-usar)<br>
   [3. Como Usar:](#3-descripción-del-proyecto)<br>
-  [4. Diseño:](#4-diseño)<br>
-  [5. Futuras Funcionalidades:](#5-futuras-funcionalidades)<br>
-  [6. Herramientas Utilizadas:](#6herramientas-utilizadas)
+  [4. Futuras Funcionalidades:](#4-Futuras-Funcionalidades)<br>
+  [5. Herramientas Utilizadas:](#5herramientas-utilizadas)<br>
 
 
 ## 1. Introducción.
 
-- Proyecto desarrollado para GeeksHubs Academy, en este simulamos un "e-commerce" que se dedica al alquiler de peliculas, la cual dispondra de una API Resful para el manejo del CRUD en los Endpoints detallados mas abajo y una Base de Datos propia para el almacenamiento de pedidos, a la vez que listados de peliculas y usuarios (los cuales podran registrarse y realizar login). 
+- Proyecto desarrollado para GeeksHubs Academy, en este simulamos un "e-commerce" que se dedica al alquiler de peliculas, la cual dispondra de una API RestFul para el manejo del CRUD en los Endpoints detallados mas abajo y una Base de Datos propia para el almacenamiento de pedidos, a la vez que listados de peliculas y usuarios (los cuales podran registrarse y realizar login). 
 - BackEnd Deployed [HEROKU](https://movie-db-geekshubs.herokuapp.com)<br>
 - Aqui una imagen del diseño de la Base de datos:
   
@@ -35,37 +34,97 @@
 
 ## 2. Descripción del proyecto.
 
-- En este proyecto se ha intentado crear un BackEnd completo y funcional 
+- En este proyecto se ha creado un BackEnd completo y funcional para la simulacion de un "e-commerce", que continuacion se describiran las partes que compone este BackEnd :
+  
+
+- API Restful para el manejo del CRUD de los EndPoints (descritos mas abajo), consta de 3 diferentes "views" que en las que podemos encontrar Pedidos, Peliculas y Usuarios, al estar modularizado de esta manera conseguimos una mejor limpiza en el codigo y una mayor escalabilidad.
+  
+- BBDD Relacional en MySql, la cual nos permite una gestion muy potente y robusta frente a las no Relacionales como MongoDB y tambien gracias a MySql las consultas en PEDIDOS estan en RAW SQL implementado para practicar su uso en el proceso de aprendizaje con este proyecto.
+  
 
 ## 3. Como Usar.
 
-- Este ha sido un proyecto muy complicado ya que se ha desarrollado un "Juego" con Java Script Vanilla, con todas las dificultades que conlleva.
+- Este proyecto esta deployado en HEROKU por lo cual para probarlo solo tendras que tener una heramienta llamada POSTMAN la cual te permite probar el CRUD en los endpoints.
+  <br>
 
-- Me he centrado sobre todo en conseguir un buen diseño que se aproxime lo mayor posible al juego.
+- Una vez abierto el postman simplemente tienes que introducir esta URL :
+    https://movie-db-geekshubs.herokuapp.com/ 
+    
+A continuacion se describen las posibilidades que tienes:
+### EndPoints de /peliculas:
 
 
-## 4. Diseño.
+- Leer todos las Peliculas de nuestra propia DB:
+  
+  ```bash
+  router.get('/', auth, PeliculasController.traePeliculas);
+  ```
+  
+- Registro Peliculas En la propia DB:
 
-- Me he inspirado en la saga de juegos Street ya que me resulta muy visual, añadiendo los sonidos y imágenes del mismo.
+  ```bash
+  router.post('/', auth, PeliculasController.registraPelicula);
+  ```
+
+- Borrar Pelicula DB propia:
+    ```bash
+    router.delete('/', auth, isAdmin, PeliculasController.borrarPelicula);
+    ```
+- Busca peliculas por Genero En propia DB:
+    ```bash
+    router.get('/genero', auth, PeliculasController.buscaGenero);
+    ```
+- Busca peliculas por Adult En propia DB:
+  
+    ```bash
+    router.get('/adult', auth, PeliculasController.buscaAdult);
+    ```
+
+- Buscar Peliculas por Genero y Titulo en propia DB: 
+
+    ```bash
+    router.get('/genero_titulo', auth, PeliculasController.buscaGenTit);
+    ```
+
+EndPoints Varios a la API de MovieDB:
+
+- Busqueda de peliculas por titulo: 
+
+    ```bash
+    router.get('/titulo', auth, PeliculasController.peliculasTitulo)
+    ```
+
+- Busqueda de novedades: 
+
+    ```bash
+    router.get('/novedades', auth, PeliculasController.traeNovedades)
+    ```
 
 
 
-## 5. Futuras funcionalidades.
 
-- Me habría gustado poder añadir funcionalidades a las teclas como en el juego real, introduciendo más jugabilidad.
 
-- También tengo pensado añadir sprites de todos los luchadores para acompañar a la jugabilidad añadida en futuras funcionalidades.
 
-## 6.Herramientas Utilizadas:
+## 4. Futuras funcionalidades.
 
--El proyecto se ha realizado esencialmente con la herramienta VisualStudio Code.
+- Mas adelante me gustaria pulir los Campos de las tablas añadiendo o modificando algunos para aumentar la cantidad de Endpoints, añadiendo mas vistas y mas funcionalidades.
+- Como extra me gustaria tambien poder añadir un FrontEnd con React
 
--Herramienta de Live Server para ir viendo el proceso de construcción.
 
--GitHub para el almacenamiento y el control de lo realizado en el proyecto.
 
+## 5. Herramientas Utilizadas.
+
+- MySQL Workbench
+- Visual Studio Code
+- Postman
+- Heroku
+
+<br>
 
 ## English version
 
+
+### 404 - NOT FOUND.
+WORK IN PROGRESS...<br>
 
 [Subir](#top)
