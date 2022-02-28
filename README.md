@@ -25,7 +25,8 @@
 
 ## 1. Introducción.
 
-- Proyecto desarrollado para GeeksHubs Academy, en este simulamos un "e-commerce" que se dedica al alquiler de peliculas, la cual dispondra de una API RestFul para el manejo del CRUD en los Endpoints detallados mas abajo y una Base de Datos propia para el almacenamiento de pedidos, a la vez que listados de peliculas y usuarios (los cuales podran registrarse y realizar login). 
+- Proyecto desarrollado para GeeksHubs Academy, en este simulamos un "e-commerce" que se dedica al alquiler de peliculas, la cual dispondra de una API RestFul para el manejo del CRUD en los Endpoints detallados mas abajo y una Base de Datos propia para el almacenamiento de pedidos, a la vez que listados de peliculas y usuarios (los cuales podran registrarse y realizar login). <br>
+  
 - BackEnd and BBDD Deployed on [HEROKU](https://movie-db-geekshubs.herokuapp.com)<br>
 - Aqui una imagen del diseño de la Base de datos:
   
