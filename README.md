@@ -52,6 +52,10 @@
 
 - Tendras que registrarte por POSTMAN y hacer Login para obtener el JWT, que te autorizara a ejecutar el resto de EndPoints.
 
+- Introduce el token aqui:
+
+![image](screenshot/post.png)
+
 <br>
     
 A continuacion se describen las posibilidades que tienes:
@@ -270,10 +274,10 @@ Todos los EndPoint de /pedidos esta realizado con consultas RAW SQL:<br>
 
 ## 5. Herramientas Utilizadas.
 
-- MySQL Workbench
-- Visual Studio Code
-- Postman
-- Heroku
+- MySQL Workbench - (BBDD)
+- Visual Studio Code - (DEV)
+- Postman - (DEBUG)
+- Heroku - (DEPLOY)
 
 <br>
 
