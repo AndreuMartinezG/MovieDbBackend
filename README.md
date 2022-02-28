@@ -26,7 +26,7 @@
 ## 1. Introducción.
 
 - Proyecto desarrollado para GeeksHubs Academy, en este simulamos un "e-commerce" que se dedica al alquiler de peliculas, la cual dispondra de una API RestFul para el manejo del CRUD en los Endpoints detallados mas abajo y una Base de Datos propia para el almacenamiento de pedidos, a la vez que listados de peliculas y usuarios (los cuales podran registrarse y realizar login). 
-- BackEnd Deployed [HEROKU](https://movie-db-geekshubs.herokuapp.com)<br>
+- BackEnd and BBDD Deployed on [HEROKU](https://movie-db-geekshubs.herokuapp.com)<br>
 - Aqui una imagen del diseño de la Base de datos:
   
 ![image](screenshot/db.png)
@@ -47,63 +47,219 @@
 - Este proyecto esta deployado en HEROKU por lo cual para probarlo solo tendras que tener una heramienta llamada POSTMAN la cual te permite probar el CRUD en los endpoints.
   <br>
 
-- Una vez abierto el postman simplemente tienes que introducir esta URL :
+- Una vez abierto el postman simplemente tienes que introducir esta URL :<br>
     https://movie-db-geekshubs.herokuapp.com/ 
+
+- Tendras que registrarte por POSTMAN y hacer Login para obtener el JWT, que te autorizara a ejecutar el resto de EndPoints.
+
+<br>
     
 A continuacion se describen las posibilidades que tienes:
-### EndPoints de /peliculas:
+
+### EndPoints de /usuarios :
+
+Ejemplo: https://movie-db-geekshubs.herokuapp.com/usuarios
+
+- Registro :
+  
+  ```bash
+  router.post('/', UsuarioController.registraUsuario);
+  ```
+
+- Login : 
+  
+  ```bash
+  router.post('/login', UsuarioController.logUsuario);
+  ```
+
+- Leer todos los usuarios :
+  
+  ```bash
+  router.get('/', auth, UsuarioController.traeUsuarios);
+  ```
+
+- Borra todos los usuarios de la base de datos :
+  
+  ```bash
+  router.delete('/', auth, isAdmin, UsuarioController.deleteAll);
+  ```
+
+- Actualizar pass usuario :
+  
+  ```bash
+  router.put('/newpassword', auth, UsuarioController.updatePassword);
+  ```
+
+- Busca en la db usuarios por ID :
+  
+  ```bash
+  router.get('/:id', auth, UsuarioController.traerUsuarioId);
+  ```
+
+- Borra de la db usuarios por ID :
+  
+  ```bash
+  router.delete('/:id', auth, isAdmin, UsuarioController.deleteById);
+  ```
+
+- Actualiza datos de usuarios en la DB :
+  
+  ```bash
+  router.put('/:id', auth, UsuarioController.updateProfile);
+  ```
+
+- Busca usuarios en la db por email :
+  
+  ```bash
+  router.get('/email/:email', auth, UsuarioController.traerUsuarioEmail);
+  ```
+
+<br>
 
 
-- Leer todos las Peliculas de nuestra propia DB:
+### EndPoints de /peliculas :
+
+Ejemplo: https://movie-db-geekshubs.herokuapp.com/peliculas
+
+- Leer todos las Peliculas de nuestra propia DB :
   
   ```bash
   router.get('/', auth, PeliculasController.traePeliculas);
   ```
   
-- Registro Peliculas En la propia DB:
+- Registro Peliculas En la propia DB :
 
   ```bash
   router.post('/', auth, PeliculasController.registraPelicula);
   ```
 
-- Borrar Pelicula DB propia:
+- Borrar Pelicula DB propia :
     ```bash
     router.delete('/', auth, isAdmin, PeliculasController.borrarPelicula);
     ```
-- Busca peliculas por Genero En propia DB:
+- Busca peliculas por Genero En propia DB :
     ```bash
     router.get('/genero', auth, PeliculasController.buscaGenero);
     ```
-- Busca peliculas por Adult En propia DB:
+- Busca peliculas por Adult En propia DB :
   
     ```bash
     router.get('/adult', auth, PeliculasController.buscaAdult);
     ```
 
-- Buscar Peliculas por Genero y Titulo en propia DB: 
+- Buscar Peliculas por Genero y Titulo en propia DB : 
 
     ```bash
     router.get('/genero_titulo', auth, PeliculasController.buscaGenTit);
     ```
 
-EndPoints Varios a la API de MovieDB:
+EndPoints Varios a la API de MovieDB :
 
-- Busqueda de peliculas por titulo: 
+- Busqueda de peliculas por titulo : 
 
     ```bash
     router.get('/titulo', auth, PeliculasController.peliculasTitulo)
     ```
 
-- Busqueda de novedades: 
+- Busqueda de novedades : 
 
     ```bash
     router.get('/novedades', auth, PeliculasController.traeNovedades)
     ```
 
+- Ultima pelicula subida a la base de datos : 
+
+    ```bash
+    router.get('/ultimas', auth, PeliculasController.peliculasUltimas)
+    ```
+
+- Traemos las peliculas con mejor nota : 
+
+    ```bash
+    router.get('/top_rated', auth, PeliculasController.peliculasValoradas)
+    ```
+
+- Traemos las peliculas relacionadas con la pelicula ID :
+
+    ```bash
+    router.get('/:id/relacionadas', auth, PeliculasController.peliculasRelacionadas)
+    ```
+
+- Busqueda por ID :
+
+    ```bash
+    router.get('/:id', auth, PeliculasController.peliculasPorId)
+    ```
+
+- Busqueda de Reviews de peliculas por id :
+
+    ```bash
+    router.get('/:id/reviews', auth, PeliculasController.peliculasIdReviews)
+    ```
 
 
 
+### EndPoints de /pedidos :
 
+Ejemplo: https://movie-db-geekshubs.herokuapp.com/pedidos
+
+- Buscamos Pedidos Todos los pedidos en DB :
+  
+  ```bash
+  router.post('/', auth, PedidosController.nuevoPedido);
+  ```
+
+- Buscamos Pedidos Todos los pedidos en DB :
+
+    ```bash
+    router.get('/', auth, PedidosController.todosPedidos);
+    ```
+
+- Borramos todos los pedidos en DB :
+
+    ```bash
+    router.get('/', auth, PedidosController.todosPedidos);
+    ```
+
+- Busqueda Avanzada de pedido en DB :
+
+    ```bash
+    router.get('/avanzado', auth, PedidosController.infoPedidoAvanzado);
+    ```
+
+- Borrar pedidos de Ususarios por Nombre :
+
+    ```bash
+    router.delete('/avanzado/usuarios/:nombre', auth, PedidosController.borrarNombre)
+    ```
+
+- Busqueda Avanzada de Usuarios por Nombre :
+
+    ```bash
+    router.get('/avanzado/usuarios/:nombre', auth, PedidosController.pedidoNombre);
+    ```
+
+- Busqueda avanzada de Usuarios con alquiler :
+
+    ```bash
+    router.get('/avanzado/usuarios', auth, PedidosController.infoUsuarios);
+    ```
+
+- Busqueda de Usuarios Menores con peliculas para adultos Alquiladas :
+
+    ```bash
+    router.get('/paterntalAlert', auth, PedidosController.paterntalAlert);
+    ```
+
+- Borrar pedidos por ID en DB :
+
+    ```bash
+    router.delete('/:id', auth, PedidosController.borrarPorId);
+    ```
+
+Todos los EndPoint de /pedidos esta realizado con consultas RAW SQL:<br>
+
+![image](screenshot/consulta.png)
 
 ## 4. Futuras funcionalidades.
 
@@ -124,7 +280,7 @@ EndPoints Varios a la API de MovieDB:
 ## English version
 
 
-### 404 - NOT FOUND.
+### (404)
 WORK IN PROGRESS...<br>
 
 [Subir](#top)
