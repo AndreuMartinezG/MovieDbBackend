@@ -31,7 +31,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       telefono: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
       },
       numCuenta: {
         type: Sequelize.STRING
