@@ -25,33 +25,33 @@
 
 ## 1. Introducción.
 
-- Proyecto desarrollado para GeeksHubs Academy, en este simulamos un "e-commerce" que se dedica al alquiler de peliculas, la cual dispondra de una API RestFul para el manejo del CRUD en los Endpoints detallados mas abajo y una Base de Datos propia para el almacenamiento de pedidos, a la vez que listados de peliculas y usuarios (los cuales podran registrarse y realizar login). <br>
+- Proyecto desarrollado para GeeksHubs Academy, en este simulamos un "e-commerce" que se dedica al alquiler de películas, la cual dispondra de una API RestFul para el manejo del CRUD en los Endpoints detallados mas abajo y una Base de Datos propia para el almacenamiento de pedidos, a la vez que listados de películas y usuarios (los cuales podrán registrarse y realizar login). <br>
   
 - BackEnd and BBDD Deployed on [HEROKU](https://movie-db-geekshubs.herokuapp.com)<br>
-- Aqui una imagen del diseño de la Base de datos:
+- Aquí una imagen del diseño de la Base de datos :
   
 ![image](screenshot/db.png)
 
 
 ## 2. Descripción del proyecto.
 
-- En este proyecto se ha creado un BackEnd completo y funcional para la simulacion de un "e-commerce", que continuacion se describiran las partes que compone este BackEnd :
+- En este proyecto se ha creado un BackEnd completo y funcional para la simulación de un "e-commerce", que continuación se describirán las partes que compone este BackEnd :
   
 
-- API Restful para el manejo del CRUD de los EndPoints (descritos mas abajo), consta de 3 diferentes "views" que en las que podemos encontrar Pedidos, Peliculas y Usuarios, al estar modularizado de esta manera conseguimos una mejor limpiza en el codigo y una mayor escalabilidad.
+- API Restful para el manejo del CRUD de los EndPoints (descritos mas abajo), consta de 3 diferentes "views" que en las que podemos encontrar Pedidos, Películas y Usuarios, al estar modularizado de esta manera conseguimos una mejor limpieza en el código y una mayor escalabilidad.
   
-- BBDD Relacional en MySql, la cual nos permite una gestion muy potente y robusta frente a las no Relacionales como MongoDB y tambien gracias a MySql las consultas en PEDIDOS estan en RAW SQL implementado para practicar su uso en el proceso de aprendizaje con este proyecto.
+- BBDD Relacional en MySql, la cual nos permite una gestión muy potente y robusta frente a las no Relacionales como MongoDB y también gracias a MySql las consultas en PEDIDOS estan en RAW SQL implementado para practicar su uso en el proceso de aprendizaje con este proyecto.
   
 
 ## 3. Como Usar.
 
-- Este proyecto esta deployado en HEROKU por lo cual para probarlo solo tendras que tener una heramienta llamada POSTMAN la cual te permite probar el CRUD en los endpoints.
+- Este proyecto esta deployado en HEROKU por lo cual para probarlo solo tendras que tener una herramienta llamada POSTMAN la cual te permite probar el CRUD en los endpoints.
   <br>
 
 - Una vez abierto el postman simplemente tienes que introducir esta URL :<br>
     https://movie-db-geekshubs.herokuapp.com/ 
 
-- Tendras que registrarte por POSTMAN y hacer Login para obtener el JWT, que te autorizara a ejecutar el resto de EndPoints.
+- Tendrás que registrarte por POSTMAN y hacer Login para obtener el JWT, que te autorizara a ejecutar el resto de EndPoints.
 
 - Introduce el token aqui:
 
@@ -268,8 +268,8 @@ Todos los EndPoint de /pedidos esta realizado con consultas RAW SQL:<br>
 
 ## 4. Futuras funcionalidades.
 
-- Mas adelante me gustaria pulir los Campos de las tablas añadiendo o modificando algunos para aumentar la cantidad de Endpoints, añadiendo mas vistas y mas funcionalidades.
-- Como extra me gustaria tambien poder añadir un FrontEnd con React
+- Mas adelante me gastaría pulir los Campos de las tablas añadiendo o modificando algunos para aumentar la cantidad de Endpoints, añadiendo mas vistas y mas funcionalidades.
+- Como extra me gastaría también poder añadir un FrontEnd con React.
 
 
 
