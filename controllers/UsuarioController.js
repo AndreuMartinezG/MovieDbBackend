@@ -17,7 +17,7 @@ UsuarioController.traeUsuarios = (req, res) => {
         .then(data => {
 
             res.send(data)
-        }).catch (error =>{
+        }).catch(error => {
             res.send(error)
         })
 };
@@ -48,9 +48,9 @@ UsuarioController.registraUsuario = async (req, res) => {
                     }
                 },
                 {
-                    telefono : {
-                        [Op.like] : telefono
-                
+                    telefono: {
+                        [Op.like]: telefono
+
                     }
                 }
             ]
@@ -173,8 +173,7 @@ UsuarioController.updatePassword = (req, res) => {
 
                 newPassword = bcrypt.hashSync(newPassword, Number.parseInt(authConfig.rounds));
 
-                ////////////////////////////////
-                
+                ////////////////////////////////7
 
                 //2do paso guardamos el nuevo password en la base de datos
 
@@ -248,7 +247,7 @@ UsuarioController.updateProfile = async (req, res) => {
 
     let datos = req.body;
 
-    let id = req.body.id
+    let id = req.params.id
 
     try {
 

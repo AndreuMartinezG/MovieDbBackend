@@ -29,7 +29,7 @@ router.get('/:id', auth, UsuarioController.traerUsuarioId);
 router.delete('/:id', auth, isAdmin, UsuarioController.deleteById);
 
 //Actualiza datos de usuarios en la DB
-router.put('/:id', UsuarioController.updateProfile);
+router.put('/:id', auth, UsuarioController.updateProfile);
 
 //Busca usuarios en la db por email
 router.get('/email/:email', auth, UsuarioController.traerUsuarioEmail);
