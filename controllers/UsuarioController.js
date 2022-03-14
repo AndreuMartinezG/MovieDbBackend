@@ -173,7 +173,8 @@ UsuarioController.updatePassword = (req, res) => {
 
                 newPassword = bcrypt.hashSync(newPassword, Number.parseInt(authConfig.rounds));
 
-                ////////////////////////////////7
+                ////////////////////////////////
+                
 
                 //2do paso guardamos el nuevo password en la base de datos
 
