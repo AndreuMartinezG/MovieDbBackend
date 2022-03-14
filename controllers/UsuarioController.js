@@ -247,7 +247,7 @@ UsuarioController.updateProfile = async (req, res) => {
 
     let datos = req.body;
 
-    let id = req.params.id
+    let id = req.body.id
 
     try {
 
