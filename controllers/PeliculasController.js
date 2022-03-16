@@ -41,6 +41,7 @@ PeliculasController.registraPelicula = (req, res) => {
     Pelicula.findAll({
         where: { titulo: titulo }
     }).then(peliculaRepetida => {
+        console.log(peliculaRepetida)
         if (peliculaRepetida == 0) {
             Pelicula.create({
                 movieId:movieId,
