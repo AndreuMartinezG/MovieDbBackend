@@ -264,22 +264,20 @@ PedidosController.borrarPorId = async (req, res) => {
 
 }
 
-PedidosController.pedidoPorId = async (req, res) => {
+PedidosController.pedidosPorId = async (req, res) => {
     
     let usuarioId = req.body.id
 
-    try {
-
+    
         Order.findAll({
             where: { usuarioId: usuarioId }
         })
             .then(data => {
                 res.send(data)
             })
-
-    } catch (error) {
-        res.send(error)
-    }
+            .catch(error => {
+                res.send(error)
+            })
 
 }
 
