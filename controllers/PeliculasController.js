@@ -50,12 +50,12 @@ PeliculasController.registraPelicula = (req, res) => {
                 adult: adult,
                 fecha: fecha
             }).then(pelicula => {
-                res.send(`${pelicula.titulo} ha sido registrada`)
+                res.send(`${pelicula.titulo} ha sido registrada`, pelicula.id)
             }).catch((error) => {
                 res.send(error);
             });
         } else {
-            res.send("La pelicula ya esta registrada")
+            res.send("La pelicula ya esta registrada", Pelicula.id)
         }
 
     }).catch(error => {
