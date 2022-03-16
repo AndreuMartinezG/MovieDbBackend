@@ -31,7 +31,7 @@ PeliculasController.traePeliculas = (req, res) => {
 
 //Registro de Peliculas en la BD propia
 PeliculasController.registraPelicula = (req, res) => {
-
+    let id = req.body.id;
     let titulo = req.body.titulo;
     let genero = req.body.genero;
     let sinopsis = req.body.sinopsis;
@@ -43,6 +43,7 @@ PeliculasController.registraPelicula = (req, res) => {
     }).then(peliculaRepetida => {
         if (peliculaRepetida == 0) {
             Pelicula.create({
+                id:id,
                 titulo: titulo,
                 genero: genero,
                 sinopsis: sinopsis,
