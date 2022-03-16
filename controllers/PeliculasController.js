@@ -56,7 +56,7 @@ PeliculasController.registraPelicula = (req, res) => {
                 res.send(error);
             });
         } else {
-            res.send(["La pelicula ya esta registrada", Pelicula.id])
+            res.send(["La pelicula ya esta registrada", Pelicula.dataValues.id])
         }
 
     }).catch(error => {
