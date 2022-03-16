@@ -42,7 +42,7 @@ PeliculasController.registraPelicula = (req, res) => {
         where: { titulo: titulo }
     }).then(peliculaRepetida => {
         console.log(peliculaRepetida, "REPETIIIIIIIIIIIIIIIIDAaaaaaaaaaaaa")
-        console.log(Pelicula, "PELICULAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        console.log([peliculaRepetida])
         if (peliculaRepetida == 0) {
             Pelicula.create({
                 movieId:movieId,
@@ -57,7 +57,7 @@ PeliculasController.registraPelicula = (req, res) => {
                 res.send(error);
             });
         } else {
-            res.send(["La pelicula ya esta registrada", Pelicula.dataValues[0].id])
+            res.send(["La pelicula ya esta registrada", peliculaRepetida.dataValues.id])
         }
 
     }).catch(error => {
