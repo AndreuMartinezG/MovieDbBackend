@@ -5,12 +5,12 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        
+        primaryKey: true,
         type: Sequelize.INTEGER
       },
       movieId: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        allowNull: false,
       },
       titulo: {
         type: Sequelize.STRING
