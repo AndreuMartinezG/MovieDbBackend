@@ -45,6 +45,7 @@ PeliculasController.registraPelicula = (req, res) => {
         console.log([peliculaRepetida.dataValues[0].id])
         if (peliculaRepetida == 0) {
             Pelicula.create({
+                id: movieId,
                 movieId:movieId,
                 titulo: titulo,
                 genero: genero,
