@@ -41,8 +41,6 @@ PeliculasController.registraPelicula = (req, res) => {
     Pelicula.findAll({
         where: { titulo: titulo }
     }).then(peliculaRepetida => {
-        console.log(peliculaRepetida, "REPETIIIIIIIIIIIIIIIIDAaaaaaaaaaaaa")
-        console.log([peliculaRepetida.dataValues[0].id])
         if (peliculaRepetida == 0) {
             Pelicula.create({
                 id: movieId,
@@ -58,7 +56,7 @@ PeliculasController.registraPelicula = (req, res) => {
                 res.send(error);
             });
         } else {
-            res.send(["La pelicula ya esta registrada", [peliculaRepetida.dataValues[0].id]])
+            res.send("La pelicula ya esta registrada")
         }
 
     }).catch(error => {
