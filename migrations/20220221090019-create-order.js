@@ -17,7 +17,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Peliculas',
-          key: 'id'
+          key: 'movieId'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
