@@ -265,19 +265,24 @@ PedidosController.borrarPorId = async (req, res) => {
 }
 
 PedidosController.pedidosPorId = async (req, res) => {
-    
+       
     let id = req.params.id
+    let consulta = `SELECT  
+                            peliculas.titulo AS Titulo_Alquilado ,
+                            orders.precio AS Precio,
+                            orders.fechaEntrega AS Fecha_Alquiler
+                    FROM heroku_459a2091d24bf28.usuarios 
+                    INNER JOIN heroku_459a2091d24bf28.orders ON usuarios.id = orders.usuarioId 
+                    INNER JOIN heroku_459a2091d24bf28.peliculas ON peliculas.id = orders.peliculaId
+                    WHERE usuarioId = ${id}`;
 
-    
-        Order.findAll({
-            where: { usuarioId: id }
-        })
-            .then(data => {
-                res.send(data)
-            })
-            .catch(error => {
-                res.send(error)
-            })
+    let resultado = await Pedido.sequelize.query(consulta,{
+        type: Pedido.sequelize.QueryTypes.SELECT});
+    if(resultado){
+        res.send(resultado);
+    }else{
+        res.send(error)
+    }
 
 }
 
