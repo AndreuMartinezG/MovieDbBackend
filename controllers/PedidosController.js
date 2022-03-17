@@ -266,11 +266,11 @@ PedidosController.borrarPorId = async (req, res) => {
 
 PedidosController.pedidosPorId = async (req, res) => {
     
-    let usuarioId = req.body.id
+    let id = req.params.id
 
     
         Order.findAll({
-            where: { usuarioId: usuarioId }
+            where: { id: id }
         })
             .then(data => {
                 res.send(data)
