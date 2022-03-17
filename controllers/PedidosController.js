@@ -276,8 +276,8 @@ PedidosController.pedidosPorId = async (req, res) => {
                     INNER JOIN heroku_459a2091d24bf28.peliculas ON peliculas.id = orders.peliculaId
                     WHERE usuarioId = ${id}`;
 
-    let resultado = await Pedido.sequelize.query(consulta,{
-        type: Pedido.sequelize.QueryTypes.SELECT});
+    let resultado = await Order.sequelize.query(consulta,{
+        type: Order.sequelize.QueryTypes.SELECT});
     if(resultado){
         res.send(resultado);
     }else{
