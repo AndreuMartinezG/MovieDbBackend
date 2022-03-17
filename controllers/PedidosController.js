@@ -270,7 +270,7 @@ PedidosController.pedidosPorId = async (req, res) => {
 
     
         Order.findAll({
-            where: { id: id }
+            where: { usuarioId: id }
         })
             .then(data => {
                 res.send(data)
