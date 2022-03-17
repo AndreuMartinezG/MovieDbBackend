@@ -40,6 +40,6 @@ router.delete('/avanzado/usuarios/:nombre', auth, PedidosController.borrarNombre
 //Borrar pedidos por ID en DB
 router.delete('/:id', auth, PedidosController.borrarPorId)
 
-router.get('/:id', auth,  PedidosController.pedidosPorId)
+router.get('/:usuarioId', auth,  PedidosController.pedidosPorId)
 
 module.exports = router;
