@@ -27,7 +27,6 @@ UsuarioController.traeUsuarios = (req, res) => {
 UsuarioController.registraUsuario = async (req, res) => {
 
     //Registrando un usuario
-    console.log("Esstamos dentro")
     let nombre = req.body.nombre;
     let apellido = req.body.apellido;
     let edad = req.body.edad;
@@ -57,7 +56,6 @@ UsuarioController.registraUsuario = async (req, res) => {
 
         }
     }).then(datosRepetidos => {
-        console.log("Hemos pasado la fase de comprobacion")
         if (datosRepetidos == 0) {
             Usuario.create({
                 nombre: nombre,
@@ -69,8 +67,7 @@ UsuarioController.registraUsuario = async (req, res) => {
                 telefono: telefono,
                 numCuenta: numCuenta
             }).then(usuario => {
-                console.log("este es mi amigo", usuario);
-                res.send(`${usuario.nombre}, bienvenid@ a este infierno`);
+                res.send(`${usuario.nombre}, Has sido registrado con exito`);
             }).catch((error) => {
                 res.send(error);
             });
@@ -181,7 +178,6 @@ UsuarioController.updatePassword = (req, res) => {
                     password: newPassword
                 }
 
-                console.log("esto es data", data);
 
                 Usuario.update(data, {
                     where: { id: id }
@@ -190,7 +186,7 @@ UsuarioController.updatePassword = (req, res) => {
                         res.send(actualizado);
                     })
                     .catch((error) => {
-                        res.status(401).json({ msg: `Ha ocurrido un error actualizando el password` });
+                        res.status(401).json({ msg: `Ha ocurrido un error actualizando el password, ${error}` });
                     });
 
             } else {
