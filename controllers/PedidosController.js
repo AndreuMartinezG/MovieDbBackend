@@ -104,10 +104,11 @@ PedidosController.infoPedidoAvanzado = async (req, res) => {
                             usuarios.edad AS Edad,  
                             peliculas.titulo AS Titulo_Alquilado , 
                             peliculas.genero AS Genero, 
-                            orders.fechaEntrega AS Fecha_Alquiler
-                    FROM usuarios 
-                            INNER JOIN orders ON usuarios.id = orders.usuarioId 
-                            INNER JOIN peliculas ON peliculas.id = orders.peliculaId `;
+                            orders.fechaEntrega AS Fecha_Alquiler,
+                            orders.Id AS id
+                    FROM heroku_459a2091d24bf28.usuarios 
+                            INNER JOIN heroku_459a2091d24bf28.orders ON usuarios.id = orders.usuarioId 
+                            INNER JOIN heroku_459a2091d24bf28.peliculas ON peliculas.id = orders.peliculaId `;
     try {
         let resultado = await Order.sequelize.query(consulta, {
             type: Order.sequelize.QueryTypes.SELECT
@@ -185,7 +186,7 @@ PedidosController.infoUsuarios = async (req, res) => {
 
 //Busqueda Avanzada de Usuarios por Nombre
 PedidosController.pedidoNombre = async (req, res) => {
-    
+
     let nombre = req.params.nombre
 
     let consulta = `SELECT  usuarios.nombre AS Nombre,
@@ -198,7 +199,7 @@ PedidosController.pedidoNombre = async (req, res) => {
                             INNER JOIN orders ON usuarios.id = orders.usuarioId 
                             INNER JOIN peliculas ON peliculas.id = orders.peliculaId
                     WHERE nombre LIKE '%${nombre}%'`;
-    
+
     try {
         let resultado = await Order.sequelize.query(consulta, {
             type: Order.sequelize.QueryTypes.SELECT
@@ -218,7 +219,7 @@ PedidosController.pedidoNombre = async (req, res) => {
 
 //Borrar pedidos de Ususarios por Nombre
 PedidosController.borrarNombre = async (req, res) => {
-    
+
     let nombre = req.params.nombre
 
     let consulta = `DELETE FROM orders 
@@ -265,7 +266,7 @@ PedidosController.borrarPorId = async (req, res) => {
 }
 
 PedidosController.pedidosPorId = async (req, res) => {
-       
+
     let id = req.params.id
     let consulta = `SELECT  
                             peliculas.titulo AS Titulo_Alquilado ,
@@ -276,11 +277,12 @@ PedidosController.pedidosPorId = async (req, res) => {
                     INNER JOIN heroku_459a2091d24bf28.peliculas ON peliculas.id = orders.peliculaId
                     WHERE usuarioId = ${id}`;
 
-    let resultado = await Order.sequelize.query(consulta,{
-        type: Order.sequelize.QueryTypes.SELECT});
-    if(resultado){
+    let resultado = await Order.sequelize.query(consulta, {
+        type: Order.sequelize.QueryTypes.SELECT
+    });
+    if (resultado) {
         res.send(resultado);
-    }else{
+    } else {
         res.send(error)
     }
 
