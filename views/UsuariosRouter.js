@@ -26,7 +26,7 @@ router.put('/newpassword', auth, UsuarioController.updatePassword);
 router.get('/:id', auth, UsuarioController.traerUsuarioId);
 
 //Borra de la db usuarios por ID
-router.delete('/:id', auth, isAdmin, UsuarioController.deleteById);
+router.delete('/:id', auth, UsuarioController.deleteById);
 
 //Actualiza datos de usuarios en la DB
 router.put('/:id', auth, UsuarioController.updateProfile);
