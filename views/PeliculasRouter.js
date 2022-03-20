@@ -21,7 +21,7 @@ router.post('/', auth, PeliculasController.registraPelicula);
 //http://localhost:3000/peliculas
 
 //Borrar Pelicula DB propia
-router.delete('/', auth, isAdmin, PeliculasController.borrarPelicula)
+router.delete('/', auth, PeliculasController.borrarPelicula)
 
 //Busca peliculas por Genero En propia BD
 router.get('/genero', auth, PeliculasController.buscaGenero);

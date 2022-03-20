@@ -69,7 +69,8 @@ PeliculasController.registraPelicula = (req, res) => {
 //Borrar Pelicula DB propia
 PeliculasController.borrarPelicula = (req, res) => {
 
-    let id = req.query.id
+    let id = req.body.id
+    let titulo = req.body.titulo
 
     try {
 
@@ -78,7 +79,7 @@ PeliculasController.borrarPelicula = (req, res) => {
             truncate: false
         })
             .then(peliculaDel => {
-                res.send(`La pelicula ${id} ha sido eliminada`)
+                res.send(`La pelicula ${titulo} ha sido eliminada`)
             })
 
     } catch (error) {
