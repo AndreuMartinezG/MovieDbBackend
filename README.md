@@ -11,7 +11,7 @@
 
 
 
-[English version](#English-version)<br>
+
 
 ## 0. Indice:
 
@@ -282,10 +282,5 @@ Todos los EndPoint de /pedidos esta realizado con consultas RAW SQL:<br>
 
 <br>
 
-## English version
-
-
-### (404)
-WORK IN PROGRESS...<br>
 
 [Subir](#top)
